@@ -7,6 +7,8 @@ TagManager:
   - PlayerStart
   - LightPlaceHolder
   - LightPlaceHolderRight
+  - sceneManager
+  - PlayerLight
   layers:
   - Default
   - TransparentFX

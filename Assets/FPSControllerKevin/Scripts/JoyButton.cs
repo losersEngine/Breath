@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using System.Linq;
 
 public class JoyButton : MonoBehaviour, IPointerDownHandler {
 
 	public Pointer pointer;
 	public GameObject target;
 
-	private string[] pickable = {"Light", "Statue"};
-	private string[] dropZone = {"Podium"};
 	private GameObject carry;
 
 	// Use this for initialization
@@ -21,10 +18,17 @@ public class JoyButton : MonoBehaviour, IPointerDownHandler {
 	// Update is called once per frame
 	void Update () {
 		if (carry != null)
-			carry.transform.SetPositionAndRotation(target.transform.position, target.transform.localRotation);
+			carry.transform.SetPositionAndRotation(target.transform.position, target.transform.rotation);
+
+		if (Input.GetKeyDown (KeyCode.E))
+			controlClick();
 	}
 
 	public virtual void OnPointerDown(PointerEventData ped){
+		controlClick ();
+	}
+
+	private void controlClick(){
 		if (carry == null) {
 			pickup ();
 		} else {
@@ -33,19 +37,19 @@ public class JoyButton : MonoBehaviour, IPointerDownHandler {
 	}
 
 	private void pickup (){
-		GameObject pointed = pointer.getPointing ();
+		PodiumController pointed = pointer.getPointing ();
 
-		if (pickable.Contains (pointed.tag))
-			carry = pointed;
+		if (pointed != null)
+			carry = pointed.TakeItem();
 	}
 
 	private void drop(){
-		GameObject pointed = pointer.getPointing ();
+		PodiumController pointed = pointer.getPointing ();
 
-		if (dropZone.Contains (pointed.tag)) {
+		if (pointed != null) {
 			GameObject aux = carry;
 			carry = null;
-			//TODO: Colocar objeto en el pedestal
+			pointed.PlaceItem (aux);
 		}
 	}
 }

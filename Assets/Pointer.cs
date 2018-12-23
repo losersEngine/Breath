@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public class Pointer : MonoBehaviour {
 
-	private string[] tags = {"Light", "Statue", "Other", "Podium"};
-	private GameObject pointing;
+	private string tags = "LightPlaceHolderRight";
+	private PodiumController pointing;
 
 	// Use this for initialization
 	void Start () {
@@ -19,15 +18,15 @@ public class Pointer : MonoBehaviour {
 	}
 
 	public void OnTriggerEnter(Collider other){
-		if (tags.Contains (other.tag))
-			pointing = other.gameObject;
+		if (tags.Equals(other.tag))
+			pointing = other.gameObject.GetComponent<PodiumController>();
 	}
 
 	public void OnTriggerExit(){
 		pointing = null;
 	}
 
-	public GameObject getPointing(){
+	public PodiumController getPointing(){
 		return pointing;
 	}
 }
