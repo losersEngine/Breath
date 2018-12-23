@@ -1,0 +1,60 @@
+fileFormatVersion: 2
+guid: 25be536d4cba2c14d9dcf7d4902ed079
+ScriptedImporter:
+  fileIDToRecycleName:
+    100000: StylizedWater/StylizedWater
+    400000: StylizedWater/StylizedWater/Transform
+    2100000: mat.StylizedWater
+    2300000: StylizedWater/StylizedWater/MeshRenderer
+    2800000: StylizedWater_diffuse
+    2800002: StylizedWater_normal
+    3300000: StylizedWater/StylizedWater/MeshFilter
+    11400000: sbsar
+    11400002: graph0
+    13500000: StylizedWater/StylizedWater/SphereCollider
+    100100000: StylizedWater
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 232528478, guid: 43a8bbf65be290d44ba52b94476242b9, type: 3}
+  version: 13
+  mGraphInstanceData:
+  - graphLabel: StylizedWater
+    prototypeName: StylizedWater
+    graphDescIndex: 0
+    generateAllOutputs: 0
+    generateMipMaps: 1
+    preset: " <sbspreset pkgurl=\"pkg://StylizedWater\" label=\"\" >\n </sbspreset>\n"
+    shaderName: Standard
+    outputNames: diffuse,normal
+    texturePackingList:
+    - outputName: diffuse
+      alphaSource: diffuse
+    - outputName: normal
+      alphaSource: normal
+    textureParameters:
+    - textureName: StylizedWater_diffuse
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: StylizedWater_normal
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    colorSpaceList:
+    - outputName: diffuse
+      bLinear: 0
+    - outputName: normal
+      bLinear: 1
+    inputTextureMap: []
+    targetSettingList:
+    - label: 
+      bLockRatio: 1
+      bHighQuality: 0
+      textureWidth: 256
+      textureHeight: 256
+      textureFormat: 0
+      bGenerateOnLoad: 1
+    material: {fileID: 2100000, guid: 25be536d4cba2c14d9dcf7d4902ed079, type: 3}
+    generatedTextures: []
