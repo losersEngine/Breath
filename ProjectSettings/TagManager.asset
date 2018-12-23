@@ -7,6 +7,9 @@ TagManager:
   - PlayerStart
   - LightPlaceHolder
   - LightPlaceHolderRight
+  - canvas
+  - UIManager
+  - GameManager
   layers:
   - Default
   - TransparentFX
