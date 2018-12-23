@@ -20,9 +20,25 @@ GameObject:
   m_Component:
   - component: {fileID: 4269564948901992}
   - component: {fileID: 135444751098189888}
+  - component: {fileID: 114732081202270016}
   m_Layer: 0
   m_Name: LightPlaceHolder
-  m_TagString: LightPlaceHolder
+  m_TagString: LightPlaceHolderRight
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1685724629091022
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4360389716885988}
+  m_Layer: 0
+  m_Name: ObjectPlace
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,12 +67,26 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1267893383965520}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 158.34, y: 10.38, z: 225.90999}
+  m_LocalPosition: {x: 11.467392, y: -4.862932, z: -4.539978}
   m_LocalScale: {x: 2, y: 1, z: 2}
   m_Children:
   - {fileID: 4674584332189950}
+  - {fileID: 4360389716885988}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4360389716885988
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1685724629091022}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.005, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4269564948901992}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4674584332189950
 Transform:
@@ -113,6 +143,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1754734184928798}
   m_Mesh: {fileID: 4300000, guid: 383f22cb1e317fe4dbbf1c066d351e81, type: 3}
+--- !u!114 &114732081202270016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1267893383965520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e1a6d93343c53948953f790c78817ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1685724629091022}
+  placed: {fileID: 0}
+  scene: {fileID: 0}
 --- !u!135 &135444751098189888
 SphereCollider:
   m_ObjectHideFlags: 1

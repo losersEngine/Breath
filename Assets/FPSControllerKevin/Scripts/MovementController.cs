@@ -47,6 +47,17 @@ public class MovementController : MonoBehaviour {
 		value = (rightJoystick.Vertical () != 0) ? rightJoystick.Vertical () : Input.GetAxis("Mouse Y");
 		value = value * timer * 25;
 		vista.transform.Rotate (Vector3.left * value);
+
+		Vector3 limit = vista.transform.localEulerAngles;
+		float rot = vista.transform.rotation.x;
+
+		if (rot > 0 && limit.x > 55) {
+			vista.transform.localEulerAngles = new Vector3(55, limit.y, limit.z);
+		}
+
+		if (rot < 0 && limit.x < 305) {
+			vista.transform.localEulerAngles = new Vector3(-55, limit.y, limit.z);
+		}
 		//END OF CAMERA
 	}
 }

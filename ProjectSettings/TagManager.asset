@@ -7,9 +7,14 @@ TagManager:
   - PlayerStart
   - LightPlaceHolder
   - LightPlaceHolderRight
+<<<<<<< HEAD
   - canvas
   - UIManager
   - GameManager
+=======
+  - sceneManager
+  - PlayerLight
+>>>>>>> 68d49002e63ab1970fb3bfebac113c7837ba0b63
   layers:
   - Default
   - TransparentFX
