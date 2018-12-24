@@ -23,7 +23,8 @@ public class UIManager : MonoBehaviour {
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         this.scene = scene.name;
-        InstantiateLanguage();
+        if(!scene.name.Contains("Level"))
+            InstantiateLanguage();
     }
 
     private void InstantiateLanguage() {
