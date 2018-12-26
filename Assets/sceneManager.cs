@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class sceneManager : MonoBehaviour {
 
+	public int lvlIndex;
 	public string[] objectsPlaces;
 	public PodiumController[] podiumsLevel;
 
 	public GameObject startPlayer;
 	public GameObject player;
 
+	private GameManager gM;
+	private GameObject playerAct;
+
 	// Use this for initialization
 	void Start () {
-		GameObject aux = Instantiate (player);
-		aux.transform.SetPositionAndRotation (startPlayer.transform.position, startPlayer.transform.rotation);
+		gM = GameObject.FindObjectOfType<GameManager> ();
+		playerAct = Instantiate (player);
+		playerAct.transform.SetPositionAndRotation (startPlayer.transform.position, startPlayer.transform.rotation);
 	}
 	
 	// Update is called once per frame
@@ -32,6 +37,8 @@ public class sceneManager : MonoBehaviour {
 
 		if (correct) {
 			Debug.Log ("Ganaste");
+			//TODO:
+			//gM.SaveLvl (lvlIndex);
 		}
 	}
 }
