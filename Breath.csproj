@@ -312,9 +312,29 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Joysticks\Scripts\JoyButton.cs" />
-    <Compile Include="Assets\Joysticks\Scripts\MovementController.cs" />
-    <Compile Include="Assets\Joysticks\Scripts\VirtualJoystick.cs" />
+    <Compile Include="Assets\FPSControllerKevin\Scripts\JoyButton.cs" />
+    <Compile Include="Assets\FPSControllerKevin\Scripts\MovementController.cs" />
+    <Compile Include="Assets\FPSControllerKevin\Scripts\VirtualJoystick.cs" />
+    <Compile Include="Assets\GameManager.cs" />
+    <Compile Include="Assets\PodiumController.cs" />
+    <Compile Include="Assets\Pointer.cs" />
+    <Compile Include="Assets\Replacer.cs" />
+    <Compile Include="Assets\sceneManager.cs" />
+    <Compile Include="Assets\SimpleLOD\Demo\Scripts\SimpleLODClickObject.cs" />
+    <Compile Include="Assets\SimpleLOD\Demo\Scripts\SimpleLODDemo.cs" />
+    <Compile Include="Assets\SimpleLOD\Demo\Scripts\SimpleLODDemoCamera.cs" />
+    <Compile Include="Assets\SimpleLOD\Demo\Scripts\SimpleLODShowInfo.cs" />
+    <Compile Include="Assets\SimpleLOD\Demo\Scripts\SimpleLODTredMill.cs" />
+    <Compile Include="Assets\SimpleLOD\Extensions\FloatExtensions.cs" />
+    <Compile Include="Assets\SimpleLOD\Extensions\GameObjectExtensions.cs" />
+    <Compile Include="Assets\SimpleLOD\Extensions\MeshExtensions.cs" />
+    <Compile Include="Assets\SimpleLOD\Extensions\RectExtensions.cs" />
+    <Compile Include="Assets\SimpleLOD\Extensions\Texture2DExtensions.cs" />
+    <Compile Include="Assets\SimpleLOD\Extensions\TransformExtensions.cs" />
+    <Compile Include="Assets\SimpleLOD\Extensions\Vector3Extensions.cs" />
+    <Compile Include="Assets\SimpleLOD\LODMaker.cs" />
+    <Compile Include="Assets\SimpleLOD\LODSwitcher.cs" />
+    <Compile Include="Assets\UI\Scripts\UIManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Allegorithmic\Plugins\EULA.txt" />
@@ -323,6 +343,25 @@
     <None Include="Assets\Assets\Ciconia Studio\Shaders\Double Sided Shaders\Double Sided Standard Diffuse Bump.shader" />
     <None Include="Assets\Assets\Ciconia Studio\Shaders\Double Sided Shaders\Double Sided Transparent Diffuse Bump Cutout.shader" />
     <None Include="Assets\Assets\Ciconia Studio\Shaders\Double Sided Shaders\Double Sided Transparent Diffuse Bump.shader" />
+    <None Include="Assets\SimpleLOD\Demo\Shaders\Alpha-Diffuse-ZWrite.shader" />
+    <None Include="Assets\SimpleLOD\Demo\Shaders\Alpha-VertexLitGlow02.shader" />
+    <None Include="Assets\SimpleLOD\Demo\Shaders\AlphaTest-Diffuse-GEqual.shader" />
+    <None Include="Assets\SimpleLOD\Demo\Shaders\Car.shader" />
+    <None Include="Assets\SimpleLOD\Demo\Shaders\DiffuseReflectiveShader.shader" />
+    <None Include="Assets\SimpleLOD\Demo\Shaders\GlassBuilding.shader" />
+    <None Include="Assets\SimpleLOD\Demo\Shaders\GlassReflect.shader" />
+    <None Include="Assets\SimpleLOD\Demo\Shaders\Glassreflect2D.shader" />
+    <None Include="Assets\SimpleLOD\Demo\Shaders\LightMappedDiffusetDetail.shader" />
+    <None Include="Assets\SimpleLOD\Demo\Shaders\LightsEmmissive.shader" />
+    <None Include="Assets\SimpleLOD\Demo\Shaders\MirrorReflectionLit.shader" />
+    <None Include="Assets\SimpleLOD\Demo\Shaders\Normal-BumpSpec_EnvLightmapped.shader" />
+    <None Include="Assets\SimpleLOD\Demo\Shaders\ReflectiveDiffuseSpec.shader" />
+    <None Include="Assets\SimpleLOD\Demo\Shaders\ReflectiveDiffuseSpecTransp.shader" />
+    <None Include="Assets\SimpleLOD\Demo\Shaders\ShadowProjection.shader" />
+    <None Include="Assets\SimpleLOD\Demo\Shaders\TextShaderZ.shader" />
+    <None Include="Assets\SimpleLOD\Demo\Shaders\TransparentLightMappedVertexLiZWrite.shader" />
+    <None Include="Assets\SimpleLOD\Demo\Shaders\UnlitNoFog.shader" />
+    <None Include="Assets\SimpleLOD\ReadMe.txt" />
     <None Include="Assets\StylizedWater\Shaders\StylizedWater_desktop.shader" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Styles\Main_Dark.uss" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Styles\Main_Light.uss" />
