@@ -5616,6 +5616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0b39e47186fca74da7f0b2f64296e3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lvlIndex: 1
   objectsPlaces:
   - PlayerLight
   podiumsLevel:
