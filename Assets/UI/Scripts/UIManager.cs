@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
@@ -25,6 +26,13 @@ public class UIManager : MonoBehaviour {
         this.scene = scene.name;
         if(!scene.name.Contains("Level"))
             InstantiateLanguage();
+    }
+
+    public void SetBrightness(GameObject obj)
+    {
+        Slider slider = obj.GetComponent<Slider>();
+        RenderSettings.skybox.color = new Color(slider.value, slider.value, slider.value, 1.0f);
+        Debug.Log("brillo:" + slider.value);//.GetComponent<Slider>().value);
     }
 
     private void InstantiateLanguage() {
