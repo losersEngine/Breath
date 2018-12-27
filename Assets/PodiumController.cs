@@ -9,9 +9,12 @@ public class PodiumController : MonoBehaviour {
 
 	private sceneManager scene;
 
+	private AudioSource audio;
+
 	// Use this for initialization
 	void Start () {
 		scene = GameObject.FindObjectOfType<sceneManager> ();
+		audio = this.GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -23,12 +26,16 @@ public class PodiumController : MonoBehaviour {
 		placed = obj;
 		placed.transform.SetPositionAndRotation (target.transform.position, target.transform.rotation);
 
+		audio.Play ();
+
 		scene.PlacedItem ();
 	}
 
 	public GameObject TakeItem(){
 		GameObject toReturn = placed;
 		placed = null;
+
+		audio.Play ();
 
 		return toReturn;
 	}
