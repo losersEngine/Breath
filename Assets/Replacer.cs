@@ -1,6 +1,7 @@
-﻿using UnityEngine;
-using UnityEditor;
+﻿using UnityEditor;
+using UnityEngine;
 
+#if UNITY_EDITOR
 public class ReplaceWithPrefab : EditorWindow
 {
     [SerializeField] private GameObject prefab;
@@ -8,7 +9,7 @@ public class ReplaceWithPrefab : EditorWindow
     [MenuItem("Tools/Replace With Prefab")]
     static void CreateReplaceWithPrefab()
     {
-        EditorWindow.GetWindow<ReplaceWithPrefab>();
+        GetWindow<ReplaceWithPrefab>();
     }
 
     private void OnGUI()
@@ -55,3 +56,4 @@ public class ReplaceWithPrefab : EditorWindow
         EditorGUILayout.LabelField("Selection count: " + Selection.objects.Length);
     }
 }
+#endif

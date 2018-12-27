@@ -2,7 +2,7 @@ mergeInto(LibraryManager.library, {
 
   Load: function () {
     let lvlJson = localStorage.getItem('LVL');
-    var lvl = lvlJson.lvl || 0;
+    var lvl = lvlJson.lvl || -1;
     return lvl;
   },
 

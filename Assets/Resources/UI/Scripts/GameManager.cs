@@ -7,12 +7,14 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-    /*[DllImport("__Internal")]
+    [DllImport("__Internal")]
     private static extern int Load();
     [DllImport("__Internal")]
-    private static extern void Save();*/
+    private static extern void Save(int level);
+
     public GameObject uiManager;
     private UIManager manager;
+    private bool playing;
 
     private void Awake()
     {
@@ -31,28 +33,86 @@ public class GameManager : MonoBehaviour {
 
     }
 
+    void Start()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        playing = false;
+    }
+
+    public bool isPlaying() {
+
+        return playing;
+    }
+
+    private int getActualLevel()
+    {
+        char[] arrayNameLevel = manager.scene.ToCharArray();
+        int numberLevel = (int)char.GetNumericValue(arrayNameLevel[arrayNameLevel.Length - 1]);
+
+        return numberLevel;
+    }
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         manager.scene = scene.name;
-        if (!scene.name.Contains("Level"))
+
+        
+        if (manager.scene.Contains("Level"))
+        {
+
+            manager.setLevel(getActualLevel());
+            manager.instanceText();
+        }
+        else
         {
             manager.InstantiateLanguage();
         }
-    }
 
-    // Use this for initialization
-    void Start () {
-
-        SceneManager.sceneLoaded += OnSceneLoaded;
-
+        if (manager.scene.Equals("settings"))
+        {
+            setSettingsValues();
+            GameObject.Find("back").GetComponent<Button>().onClick.AddListener(() => {
+                changeScene("main_menu");
+            });
+        }
+        if (manager.scene.Equals("level_selector"))
+        {
+            /*int actualLevel = this.loadGame();
+            manager.loadLevels(actualLevel);*/
+        }
+        
     }
 
     //////////////////////////////////////////// MENU CONFIGURACION /////////////////////////////////////////////////////////////////////////////////
 
+    private void setSettingsValues() {
+
+        //antialiasing
+        Slider antialiasing = GameObject.Find("sliderAntialiasing").GetComponent<Slider>();
+        antialiasing.value = QualitySettings.antiAliasing == 0?0: Mathf.Log(QualitySettings.antiAliasing,2);
+
+        //volume
+        Slider volume = GameObject.Find("sliderVolume").GetComponent<Slider>();
+        volume.value = AudioListener.volume;
+
+    }
+
     public void SetAntialiasing(GameObject obj)
     {
         Slider slider = obj.GetComponent<Slider>();
-        QualitySettings.antiAliasing = (int)Mathf.Pow(2, slider.value);
+
+        if(slider.value == 0)
+        {
+
+            QualitySettings.antiAliasing = 0;
+
+        }
+        else
+        {
+
+            QualitySettings.antiAliasing = (int)Mathf.Pow(2, slider.value);
+
+        }
     }
 
     public void SetVolume(GameObject obj)
@@ -71,18 +131,69 @@ public class GameManager : MonoBehaviour {
         if (value == 0) //es
         {
             manager.setLanguage("Spanish");
-            l.sprite = Resources.Load<Sprite>("UI/Images/es/español");
+            manager.loadSprite(l, "UI/Images","español");
         }
         else //en
         {
             manager.setLanguage("English");
-            l.sprite = Resources.Load<Sprite>("UI/Images/en/english");
+            manager.loadSprite(l, "UI/Images", "english");
         }
 
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    /// ///////////////////////// IN GAME TEXT ////////////////////////////////////////
+
+    public void nextText()
+    {
+        this.playing = manager.nextText();
+    
+        if(playing)
+            FindObjectOfType<sceneManager>().initGame();
+    }
 
     ////////////////////////////////////////////////////////////////////////////////////
+   
+    public void saveGame() {
+        
+        //Save();
+
+    }
+
+    //////////////////////////// PAUSE MENU ////////////////////////////////////////
+   
+    public void setPauseMenu() {
+
+        manager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+        manager.setPauseMenu();
+
+    }
+
+    public void goToSettings() {
+
+        manager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+        manager.goToSettings();
+        setSettingsValues();
+
+    }
+
+    public void backToGame() {
+
+        manager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+        manager.goToGame();
+
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    public int loadGame() {
+
+        return Load();
+
+    }
+
     public void exitGame()
     {
         Application.Quit();
@@ -98,7 +209,14 @@ public class GameManager : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
-		
-	}
+    void Update()
+    {
+        playing = GameObject.FindGameObjectWithTag("Player") != null;
+        if (playing && Input.GetKeyDown(KeyCode.Escape))
+        {
+            setPauseMenu();
+        }
+
+    }
+
 }

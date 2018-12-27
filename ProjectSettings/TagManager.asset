@@ -8,6 +8,12 @@ TagManager:
   - UIManager
   - GameManager
   - prefab
+  - sceneManager
+  - PlayerStart
+  - LightPlaceHolderRight
+  - PlayerLight
+  - level
+  - text
   layers:
   - Default
   - TransparentFX

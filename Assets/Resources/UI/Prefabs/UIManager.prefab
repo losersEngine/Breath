@@ -53,11 +53,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lang: Spanish
   es:
-  - {fileID: 1273890206999330, guid: 884439b907c85344c97595e2d3d770ca, type: 2}
+  - {fileID: 1479918136218748, guid: 884439b907c85344c97595e2d3d770ca, type: 2}
   - {fileID: 1635392109411106, guid: 88d276918c98290449859dcb95212fef, type: 2}
   - {fileID: 1659763433269966, guid: ea67228e4219ffb4b9f5bb8975ce9819, type: 2}
+  - {fileID: 1033465659480542, guid: f52ba536369fdbe46a7d2260e1473ebb, type: 2}
   en:
   - {fileID: 1900138602900344, guid: 07c27becdb9618e47907b22a277f9122, type: 2}
   - {fileID: 1840213176598120, guid: b385a51d5c575e344af51f96f05039b7, type: 2}
   - {fileID: 1657011208025542, guid: 92d73e28f7340224f90671a98b87b739, type: 2}
+  - {fileID: 1472566212303670, guid: 689d17a7a567e7544a96a8177561e267, type: 2}
   scene: 
