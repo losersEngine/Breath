@@ -17,10 +17,14 @@ public class sceneManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gM = GameObject.FindObjectOfType<GameManager> ();
-		playerAct = Instantiate (player);
-		playerAct.transform.SetPositionAndRotation (startPlayer.transform.position, startPlayer.transform.rotation);
+
 	}
 	
+    public void initGame()
+    {
+        playerAct = Instantiate(Resources.Load<GameObject>("FPSControllerKevin/Prefabs/Player"));
+        playerAct.transform.SetPositionAndRotation(startPlayer.transform.position, startPlayer.transform.rotation);
+    }
 	// Update is called once per frame
 	void Update () {
 		
