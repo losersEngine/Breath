@@ -8,8 +8,6 @@ public class sceneManager : MonoBehaviour {
 	public PodiumController[] podiumsLevel;
 
 	public GameObject startPlayer;
-	public GameObject player;
-
 	public GameObject finalExit;
 
 	private GameManager gM;
@@ -20,10 +18,13 @@ public class sceneManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gM = GameObject.FindObjectOfType<GameManager> ();
-		playerAct = Instantiate (player);
-		playerAct.transform.SetPositionAndRotation (startPlayer.transform.position, startPlayer.transform.rotation);
-
 		endGame = false;
+		initGame ();
+	}
+
+	public void initGame(){
+		playerAct = Instantiate (Resources.Load<GameObject>("FPSControllerKevin/Prefabs/Player"));
+		playerAct.transform.SetPositionAndRotation (startPlayer.transform.position, startPlayer.transform.rotation);
 	}
 	
 	// Update is called once per frame

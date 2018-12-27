@@ -53,12 +53,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\FPSControllerKevin\Scripts\JoyButton.cs" />
-     <Compile Include="Assets\FPSControllerKevin\Scripts\MovementController.cs" />
-     <Compile Include="Assets\FPSControllerKevin\Scripts\VirtualJoystick.cs" />
      <Compile Include="Assets\PodiumController.cs" />
      <Compile Include="Assets\Pointer.cs" />
      <Compile Include="Assets\Replacer.cs" />
+     <Compile Include="Assets\Resources\FPSControllerKevin\Scripts\JoyButton.cs" />
+     <Compile Include="Assets\Resources\FPSControllerKevin\Scripts\MovementController.cs" />
+     <Compile Include="Assets\Resources\FPSControllerKevin\Scripts\VirtualJoystick.cs" />
      <Compile Include="Assets\Resources\UI\Scripts\GameManager.cs" />
      <Compile Include="Assets\Resources\UI\Scripts\UIManager.cs" />
      <Compile Include="Assets\sceneManager.cs" />
