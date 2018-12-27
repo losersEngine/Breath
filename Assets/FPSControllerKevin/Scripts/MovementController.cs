@@ -12,15 +12,42 @@ public class MovementController : MonoBehaviour {
 	public Rigidbody rigid;
 	public Animator anim;
 
+	private bool fixedAnim;
+
+	private float rotBody;
+	private float rotCamera;
+
 	// Use this for initialization
 	void Start () {
 		rigid = this.GetComponent<Rigidbody>();
 		anim = this.GetComponent<Animator> ();
+
+		fixedAnim = false;
+
+		rotBody = this.transform.localRotation.eulerAngles.y;
+		rotCamera = vista.transform.localRotation.eulerAngles.x;
 	}
 
 	// Update is called once per frame
 	void Update () {
 
+		if (!fixedAnim) {
+			movement ();
+		}
+
+	}
+
+	public void setFixedAnim(bool fix){
+		fixedAnim = fix;
+		centerCamera ();
+	}
+
+	public void centerCamera (){
+		rotBody = this.transform.localRotation.y;
+		rotCamera = vista.transform.localRotation.x;
+	}
+
+	private void movement(){
 		float timer = Time.deltaTime * 4.5f;
 
 		Vector3 velocity = Vector3.zero;
@@ -40,24 +67,17 @@ public class MovementController : MonoBehaviour {
 		rigid.velocity = velocity;
 		//END OF MOVEMENT
 		//CAMERA
-		value = (rightJoystick.Horizontal () != 0) ? rightJoystick.Horizontal () : Input.GetAxis("Mouse X");
-		value = value * timer * 25;
-		this.transform.Rotate (Vector3.up * value, Space.World);
 
-		value = (rightJoystick.Vertical () != 0) ? rightJoystick.Vertical () : Input.GetAxis("Mouse Y");
-		value = value * timer * 25;
-		vista.transform.Rotate (Vector3.left * value);
+		rotBody += (rightJoystick.Horizontal () != 0) ? rightJoystick.Horizontal () : Input.GetAxis("Mouse X");
+		Quaternion localRotation = Quaternion.Euler (0, rotBody, 0);
+		this.transform.localRotation = localRotation;
 
-		Vector3 limit = vista.transform.localEulerAngles;
-		float rot = vista.transform.rotation.x;
+		rotCamera += (rightJoystick.Vertical () != 0) ? rightJoystick.Vertical () : -Input.GetAxis("Mouse Y");
+		rotCamera = Mathf.Clamp (rotCamera, -55, 55);
+		localRotation = Quaternion.Euler (rotCamera, 0, 0);
+		vista.transform.localRotation = localRotation;
 
-		if (rot > 0 && limit.x > 55) {
-			vista.transform.localEulerAngles = new Vector3(55, limit.y, limit.z);
-		}
-
-		if (rot < 0 && limit.x < 305) {
-			vista.transform.localEulerAngles = new Vector3(-55, limit.y, limit.z);
-		}
 		//END OF CAMERA
+
 	}
 }
