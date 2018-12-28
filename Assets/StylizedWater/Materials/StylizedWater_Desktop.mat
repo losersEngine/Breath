@@ -7,19 +7,55 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: StylizedWater_Desktop
-  m_Shader: {fileID: 4800000, guid: 86282aca396e36c47943004c99dcacfd, type: 3}
+  m_Shader: {fileID: 47, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Normals:
         m_Texture: {fileID: 2800002, guid: 25be536d4cba2c14d9dcf7d4902ed079, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Reflection:
@@ -30,26 +66,44 @@ Material:
         m_Texture: {fileID: -1511549886, guid: e3d849a71cf1896458f0932f079b66a3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _BumpScale: 1
     - _Cutoff: 0.5
     - _Depth: 10.9
     - _Depthdarkness: 0.417
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
     - _Fresnelexponent: 0.5
     - _Glossiness: 1
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
     - _RefractionAmount: 0.04
     - _RimSize: 0.89
     - _Rimfalloff: 0.98
     - _Rimtiling: 2
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
     - _SurfaceHighlight: 0.235
     - _SurfaceHightlighttiling: 3.35
     - _Surfacehightlightsize: 0
     - _Tesselation: 0.1
     - _Tiling: 0.796
     - _Transparency: 0.207
+    - _UVSec: 0
     - _Wavesspeed: 0.37
     - _Wavesstrength: 0.162
     - _Worldspacetiling: 0
+    - _ZWrite: 1
     m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FresnelColor: {r: 0, g: 0, b: 0, a: 0.5019608}
     - _RimColor: {r: 0.11694552, g: 0.33962262, b: 0.33962262, a: 1}
     - _WaterColor: {r: 0, g: 0.63999987, b: 1, a: 1}

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/UI Scenes/main_menu.unity
+- path: Assets/Resources/FPSControllerKevin/Scenes/MovementScene.unity
   isLoaded: 1
   isActive: 1
