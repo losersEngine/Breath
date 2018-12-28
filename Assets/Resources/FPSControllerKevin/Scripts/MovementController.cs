@@ -42,9 +42,18 @@ public class MovementController : MonoBehaviour {
 		centerCamera ();
 	}
 
+	public bool getFixedAnim(){
+		return fixedAnim;
+	}
+
 	public void centerCamera (){
-		rotBody = this.transform.localRotation.y;
-		rotCamera = vista.transform.localRotation.x;
+		rotBody = this.transform.localEulerAngles.y;
+
+		float auxCam = vista.transform.localEulerAngles.x;
+		if (auxCam > 55) {
+			auxCam -= 360;
+		}
+		rotCamera = auxCam;
 	}
 
 	private void movement(){
@@ -62,17 +71,17 @@ public class MovementController : MonoBehaviour {
 
 		anim.SetFloat ("vel", velocity.magnitude);
 
-		velocity += Physics.gravity * Time.deltaTime / 6;
+		velocity += Physics.gravity * Time.deltaTime / 5;
 		velocity = this.transform.TransformVector (velocity) * 200;
 		rigid.velocity = velocity;
 		//END OF MOVEMENT
 		//CAMERA
 
-		rotBody += (rightJoystick.Horizontal () != 0) ? rightJoystick.Horizontal () : Input.GetAxis("Mouse X");
+		rotBody += ((rightJoystick.Horizontal () != 0) ? rightJoystick.Horizontal () : Input.GetAxis("Mouse X")) * 1.5f;
 		Quaternion localRotation = Quaternion.Euler (0, rotBody, 0);
 		this.transform.localRotation = localRotation;
 
-		rotCamera += (rightJoystick.Vertical () != 0) ? rightJoystick.Vertical () : -Input.GetAxis("Mouse Y");
+		rotCamera += ((rightJoystick.Vertical () != 0) ? rightJoystick.Vertical () : -Input.GetAxis("Mouse Y")) *1.5f;
 		rotCamera = Mathf.Clamp (rotCamera, -55, 55);
 		localRotation = Quaternion.Euler (rotCamera, 0, 0);
 		vista.transform.localRotation = localRotation;
