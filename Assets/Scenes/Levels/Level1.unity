@@ -5021,7 +5021,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 721714631}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -90.8, y: -1.16, z: 2.44}
+  m_LocalPosition: {x: -24.87, y: -1.16, z: 2.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1754044148}
@@ -5644,7 +5644,7 @@ MonoBehaviour:
   - PlayerLight
   podiumsLevel:
   - {fileID: 122383942}
-  startPlayer: {fileID: 721714631}
+  startPlayer: {fileID: 1118647802}
   finalExit: {fileID: 1036923792}
 --- !u!82 &794121641
 AudioSource:
@@ -6842,7 +6842,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1036923792}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.999, y: 1.18, z: 40.3}
+  m_LocalPosition: {x: 11.01, y: 0.65, z: 41.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1754044148}
@@ -7531,6 +7531,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4179814534286058, guid: feaeab9465469ec49851f70a2aba5b40,
     type: 2}
   m_PrefabInternal: {fileID: 1118042510}
+--- !u!1 &1118647802 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1098341155731338, guid: 972f4f8ea87438748b3911ed074e8b69,
+    type: 2}
+  m_PrefabInternal: {fileID: 2142696955}
 --- !u!1001 &1120436190
 Prefab:
   m_ObjectHideFlags: 0

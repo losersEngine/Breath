@@ -11,7 +11,7 @@ public class sceneManager : MonoBehaviour {
 	public GameObject finalExit;
 
 	private GameManager gM;
-	private GameObject playerAct;
+	private MovementController playerAct;
 
 	private bool endGame;
 
@@ -19,12 +19,15 @@ public class sceneManager : MonoBehaviour {
 	void Start () {
 		gM = GameObject.FindObjectOfType<GameManager> ();
 		endGame = false;
+		//initGame ();
 	}
 
     public void initGame()
     {
-        playerAct = Instantiate(Resources.Load<GameObject>("FPSControllerKevin/Prefabs/Player"));
-        playerAct.transform.SetPositionAndRotation(startPlayer.transform.position, startPlayer.transform.rotation);
+		GameObject aux = Instantiate(Resources.Load<GameObject>("FPSControllerKevin/Prefabs/Player"));
+        aux.transform.SetPositionAndRotation(startPlayer.transform.position, startPlayer.transform.rotation);
+
+		playerAct = aux.GetComponent<MovementController> ();
     }
 
 	// Update is called once per frame
@@ -32,19 +35,23 @@ public class sceneManager : MonoBehaviour {
 
 		if (endGame) {
 			Transform transformPlayer = playerAct.transform;
-			Transform transformCamera = playerAct.GetComponent<MovementController>().vista.transform;
+			Transform transformCamera = playerAct.vista.transform;
 
 			Vector3 dirBody = finalExit.transform.position - transformPlayer.position;
 			dirBody.y = 0;
 
 			Vector3 dirCamera = finalExit.transform.position - transformCamera.position;
-			dirCamera.x = 0;
+			//dirCamera.x = 0;
 
 			Quaternion rotBody = Quaternion.LookRotation (dirBody);
 			Quaternion rotCamera = Quaternion.LookRotation (dirCamera);
 
 			transformPlayer.rotation = Quaternion.Slerp (transformPlayer.rotation, rotBody, 3.5f * Time.deltaTime);
 			transformCamera.rotation = Quaternion.Slerp (transformCamera.rotation, rotCamera, 3.5f * Time.deltaTime);
+		} else {
+			if (Input.GetKeyDown(KeyCode.Escape)){
+				playerAct.setFixedAnim(!playerAct.getFixedAnim());
+			}
 		}
 		
 	}
@@ -61,7 +68,7 @@ public class sceneManager : MonoBehaviour {
 		if (correct) {
 			Debug.Log ("Ganaste");
 
-			playerAct.GetComponent<MovementController> ().setFixedAnim(true);
+			playerAct.setFixedAnim(true);
 			endGame = true;
 
 			Invoke ("stopAnimation", 5.5f);
@@ -72,6 +79,6 @@ public class sceneManager : MonoBehaviour {
 
 	private void stopAnimation(){
 		endGame = false;
-		playerAct.GetComponent<MovementController> ().setFixedAnim(false);
+		playerAct.setFixedAnim(false);
 	}
 }
