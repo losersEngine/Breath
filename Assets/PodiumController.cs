@@ -18,20 +18,38 @@ public class PodiumController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	void Update () {}
 
 	public void PlaceItem(GameObject obj){
 		placed = obj;
 		placed.transform.SetPositionAndRotation (target.transform.position, target.transform.rotation);
-
 		audio.Play ();
 
 		scene.PlacedItem ();
-	}
 
-	public GameObject TakeItem(){
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        UIManager manager = FindObjectOfType<UIManager>();
+        if (other.tag.Equals("Player") && placed != null)
+        {
+            manager.setMessageInteract();
+
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+
+        UIManager manager = FindObjectOfType<UIManager>();
+        if (other.tag.Equals("Player"))
+        {
+            manager.destroyMessageInteract();
+        }
+    }
+    public GameObject TakeItem(){
 		GameObject toReturn = placed;
 		placed = null;
 

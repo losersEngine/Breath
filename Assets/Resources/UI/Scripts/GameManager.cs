@@ -167,6 +167,7 @@ public class GameManager : MonoBehaviour {
     public void setPauseMenu() {
 
         manager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+        FindObjectOfType<sceneManager>().setPauseMenu();
         manager.setPauseMenu();
 
     }
@@ -183,6 +184,7 @@ public class GameManager : MonoBehaviour {
 
         manager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
         manager.goToGame();
+        FindObjectOfType<sceneManager>().setPauseMenu();
 
     }
 

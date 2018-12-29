@@ -170,8 +170,8 @@ public class UIManager : MonoBehaviour {
         setParent(obj, "prefab");
 
         GameObject.Find("back").GetComponent<Button>().onClick.AddListener(() => {
-            Destroy(obj);
-            Destroy(GameObject.FindGameObjectWithTag("canvas"));
+
+            DestroyImmediate(GameObject.Find("pause_" + language + "(Clone)"));
             setPauseMenu(); //volvemos al menu de pausa
         });
 
@@ -181,6 +181,21 @@ public class UIManager : MonoBehaviour {
 
         Destroy(GameObject.FindGameObjectWithTag("canvas"));
 
+    }
+
+    public void setMessageInteract()
+    {
+
+        GameObject message = Resources.Load<GameObject>("UI/Prefabs/message");
+        GameObject obj = Instantiate(message);
+        Image img = obj.GetComponentInChildren<Image>();
+        loadSprite(img, "UI/Images", "pressE");
+
+    }
+
+    public void destroyMessageInteract()
+    {
+        Destroy(GameObject.FindGameObjectWithTag("text"));
     }
 
     private void setParent(GameObject instance, string tag)
