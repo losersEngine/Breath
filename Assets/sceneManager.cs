@@ -48,15 +48,17 @@ public class sceneManager : MonoBehaviour {
 
 			transformPlayer.rotation = Quaternion.Slerp (transformPlayer.rotation, rotBody, 3.5f * Time.deltaTime);
 			transformCamera.rotation = Quaternion.Slerp (transformCamera.rotation, rotCamera, 3.5f * Time.deltaTime);
-		} else {
-			if (Input.GetKeyDown(KeyCode.Escape)){
-				playerAct.setFixedAnim(!playerAct.getFixedAnim());
-			}
-		}
+		} 
 		
 	}
 
-	public void PlacedItem(){
+    public void setPauseMenu() {
+
+        playerAct.setFixedAnim(!playerAct.getFixedAnim());
+
+    }
+
+    public void PlacedItem(){
 		bool correct = true;
 		int i = 0;
 
