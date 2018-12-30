@@ -88,6 +88,11 @@ public class UIManager : MonoBehaviour {
 
     }
 
+    public void DestroyWithTag(string tag)
+    {
+        DestroyImmediate(GameObject.FindGameObjectWithTag(tag));
+    }
+
     public void DestroyPrefab(string name)
     {
         GameObject obj = GameObject.Find(name);

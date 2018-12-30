@@ -50,6 +50,31 @@ public class GameManager : MonoBehaviour {
         int numberLevel = (int)char.GetNumericValue(arrayNameLevel[arrayNameLevel.Length - 1]);
 
         return numberLevel;
+
+    }
+
+    public void changeUIScene(string scene)
+    {
+
+        manager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+
+        manager.DestroyWithTag("prefab");
+
+        manager.scene = scene;
+        manager.InstantiateLanguage();
+        
+        if (manager.scene.Equals("settings"))
+        {
+            setSettingsValues();
+            GameObject.Find("back").GetComponent<Button>().onClick.AddListener(() => {
+                changeUIScene("main_menu");
+            });
+        }
+        if (manager.scene.Equals("level_selector"))
+        {
+            Load();
+        }
+
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -68,19 +93,6 @@ public class GameManager : MonoBehaviour {
             manager.InstantiateLanguage();
         }
 
-        if (manager.scene.Equals("settings"))
-        {
-            setSettingsValues();
-            GameObject.Find("back").GetComponent<Button>().onClick.AddListener(() => {
-                changeScene("main_menu");
-            });
-        }
-        if (manager.scene.Equals("level_selector"))
-        {
-            /*int actualLevel = this.loadGame();
-            manager.loadLevels(actualLevel);*/
-        }
-        
     }
 
     //////////////////////////////////////////// MENU CONFIGURACION /////////////////////////////////////////////////////////////////////////////////
@@ -190,12 +202,11 @@ public class GameManager : MonoBehaviour {
 
     ////////////////////////////////////////////////////////////////////////////////////
 
-    public int loadGame() {
-
-        return Load();
-
+    public void setLvl(int level)
+    {
+        manager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+        manager.loadLevels(level);
     }
-
     public void exitGame()
     {
         Application.Quit();
