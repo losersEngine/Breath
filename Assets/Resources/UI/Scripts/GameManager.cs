@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour {
     private static extern int Load();
     [DllImport("__Internal")]
     private static extern void Save(int level);
+    [DllImport("__Internal")]
+    private static extern bool mobileAndTabletCheck();
 
     public GameObject uiManager;
     private UIManager manager;
@@ -37,6 +39,8 @@ public class GameManager : MonoBehaviour {
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         playing = false;
+
+        Debug.Log("is mobile: " + mobileAndTabletCheck());
     }
 
     public bool isPlaying() {
@@ -72,11 +76,17 @@ public class GameManager : MonoBehaviour {
         }
         if (manager.scene.Equals("level_selector"))
         {
-            Load();
+            loadLevel();
         }
 
     }
 
+    public void isMobile()
+    {
+
+        Debug.Log("Entra");
+
+    }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         manager.scene = scene.name;
@@ -202,8 +212,9 @@ public class GameManager : MonoBehaviour {
 
     ////////////////////////////////////////////////////////////////////////////////////
 
-    public void setLvl(int level)
+    public void loadLevel()
     {
+        int level = Load();
         manager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
         manager.loadLevels(level);
     }
