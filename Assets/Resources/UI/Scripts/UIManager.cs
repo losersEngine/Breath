@@ -14,8 +14,19 @@ public class UIManager : MonoBehaviour {
     public string scene;
     private GameObject instance;
     private int actualLevel = 1;
-    private int[] numTextsByLevel = { 2, 0, 0, 0 };
+    private string device;
+    private int[] numTextsByLevel = { 2, 1, 1, 1, 1 };
 
+
+    public void setDevice(string device)
+    {
+        this.device = device;
+    }
+
+    public string getDevice()
+    {
+        return device;
+    }
     public void setLevel(int n)
     {
         actualLevel = n;
@@ -138,6 +149,10 @@ public class UIManager : MonoBehaviour {
         if(numberNext <= numTextsByLevel[actualLevel - 1])
         {
             GameObject nextText = Resources.Load<GameObject>("UI/Text/" + language + "/" + scene + "_" + numberNext);
+            if (!nextText)
+            {
+                nextText = Resources.Load<GameObject>("UI/Text/" + language + "/" + scene + "_" + device + "_" +  numberNext); //hay textos concretos para movil y otros para ordenador
+            }
             GameObject obj = Instantiate(nextText);
             setParent(obj, "canvas");
             return false;
@@ -194,7 +209,7 @@ public class UIManager : MonoBehaviour {
         GameObject message = Resources.Load<GameObject>("UI/Prefabs/message");
         GameObject obj = Instantiate(message);
         Image img = obj.GetComponentInChildren<Image>();
-        loadSprite(img, "UI/Images", "pressE");
+        loadSprite(img, "UI/Images", "press_" + device);
 
     }
 
