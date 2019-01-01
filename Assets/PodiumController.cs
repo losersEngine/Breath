@@ -33,7 +33,7 @@ public class PodiumController : MonoBehaviour {
     {
 
         UIManager manager = FindObjectOfType<UIManager>();
-        if (other.tag.Equals("Player") && placed != null)
+        if (other.tag.Equals("targetCamera") && placed != null)
         {
             manager.setMessageInteract();
 
@@ -44,7 +44,7 @@ public class PodiumController : MonoBehaviour {
     {
 
         UIManager manager = FindObjectOfType<UIManager>();
-        if (other.tag.Equals("Player"))
+        if (other.tag.Equals("targetCamera"))
         {
             manager.destroyMessageInteract();
         }

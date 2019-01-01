@@ -20,27 +20,30 @@ public class GameManager : MonoBehaviour {
 
     private void Awake()
     {
-        if (!GameObject.FindGameObjectWithTag("UIManager"))
+        if (!FindObjectOfType<UIManager>())
         {
             DontDestroyOnLoad(this);
-            GameObject ins = Instantiate(uiManager);
-            DontDestroyOnLoad(ins);
+            manager = Instantiate(uiManager).GetComponent<UIManager>();
+            DontDestroyOnLoad(manager);
         }
         else
         {
             Destroy(this);
         }
 
-        manager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
-
     }
 
     void Start()
     {
+
         SceneManager.sceneLoaded += OnSceneLoaded;
         playing = false;
 
-        Debug.Log("is mobile: " + mobileAndTabletCheck());
+        /*string device = mobileAndTabletCheck()?"mobile":"desktop";
+        manager.setDevice(device);*/
+       // manager = FindObjectOfType<UIManager>();
+        manager.setDevice("desktop");
+
     }
 
     public bool isPlaying() {
@@ -60,8 +63,7 @@ public class GameManager : MonoBehaviour {
     public void changeUIScene(string scene)
     {
 
-        manager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
-
+        manager = FindObjectOfType<UIManager>();
         manager.DestroyWithTag("prefab");
 
         manager.scene = scene;
@@ -81,12 +83,6 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    public void isMobile()
-    {
-
-        Debug.Log("Entra");
-
-    }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         manager.scene = scene.name;
@@ -146,8 +142,7 @@ public class GameManager : MonoBehaviour {
     public void SetLanguage(int value)
     {
 
-        manager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
-
+        manager = FindObjectOfType<UIManager>();
         Image l = GameObject.Find("languageOp").GetComponent<Image>();
 
         if (value == 0) //es
@@ -170,6 +165,7 @@ public class GameManager : MonoBehaviour {
 
     public void nextText()
     {
+        manager = FindObjectOfType<UIManager>();
         this.playing = manager.nextText();
     
         if(playing)
@@ -188,7 +184,7 @@ public class GameManager : MonoBehaviour {
    
     public void setPauseMenu() {
 
-        manager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+        manager = FindObjectOfType<UIManager>();
         FindObjectOfType<sceneManager>().setPauseMenu();
         manager.setPauseMenu();
 
@@ -196,7 +192,7 @@ public class GameManager : MonoBehaviour {
 
     public void goToSettings() {
 
-        manager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+        manager = FindObjectOfType<UIManager>();
         manager.goToSettings();
         setSettingsValues();
 
@@ -204,7 +200,7 @@ public class GameManager : MonoBehaviour {
 
     public void backToGame() {
 
-        manager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+        manager = FindObjectOfType<UIManager>();
         manager.goToGame();
         FindObjectOfType<sceneManager>().setPauseMenu();
 
@@ -215,7 +211,7 @@ public class GameManager : MonoBehaviour {
     public void loadLevel()
     {
         int level = Load();
-        manager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+        manager = FindObjectOfType<UIManager>();
         manager.loadLevels(level);
     }
     public void exitGame()
@@ -226,7 +222,7 @@ public class GameManager : MonoBehaviour {
     public void changeScene(string newScene)
     {
 
-        manager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+        manager = FindObjectOfType<UIManager>();
         manager.SceneChanged();
         SceneManager.LoadScene(newScene);
 
@@ -235,6 +231,7 @@ public class GameManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+
         playing = GameObject.FindGameObjectWithTag("Player") != null;
         if (playing && Input.GetKeyDown(KeyCode.Escape))
         {
