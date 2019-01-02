@@ -7,9 +7,11 @@ public class SceneChanger : MonoBehaviour {
 
 	public string nextScene;
 
+	private GameManager gM;
+
 	// Use this for initialization
 	void Start () {
-		
+		gM = FindObjectOfType<GameManager> ();
 	}
 	
 	// Update is called once per frame
@@ -19,7 +21,7 @@ public class SceneChanger : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.tag.Equals("Player"))
-			SceneManager.LoadScene (nextScene);
+		if (other.tag.Equals ("Player"))
+			gM.changeScene (nextScene);
 	}
 }

@@ -17,8 +17,13 @@ public class MovementController : MonoBehaviour {
 	private float rotBody;
 	private float rotCamera;
 
+	private bool mobile;
+
 	// Use this for initialization
 	void Start () {
+
+		mobile = FindObjectOfType<UIManager> ().getDevice ().Equals ("mobile");
+
 		rigid = this.GetComponent<Rigidbody>();
 		anim = this.GetComponent<Animator> ();
 
@@ -61,11 +66,11 @@ public class MovementController : MonoBehaviour {
 
 		Vector3 velocity = Vector3.zero;
 		//MOVEMENT
-		float value = (leftJoystick.Vertical () != 0) ? leftJoystick.Vertical () : Input.GetAxis ("Vertical");
+		float value = (mobile) ? leftJoystick.Vertical () : Input.GetAxis ("Vertical");
 		value = value * timer;
 		velocity += (Vector3.forward * value);
 
-		value = (leftJoystick.Horizontal () != 0) ? leftJoystick.Horizontal () : Input.GetAxis ("Horizontal");
+		value = (mobile) ? leftJoystick.Horizontal () : Input.GetAxis ("Horizontal");
 		value = value * timer;
 		velocity += (Vector3.right * value);
 
@@ -77,11 +82,11 @@ public class MovementController : MonoBehaviour {
 		//END OF MOVEMENT
 		//CAMERA
 
-		rotBody += ((rightJoystick.Horizontal () != 0) ? rightJoystick.Horizontal () : Input.GetAxis("Mouse X")) * 1.5f;
+		rotBody += ((mobile) ? rightJoystick.Horizontal () : Input.GetAxis("Mouse X")) * 1.5f;
 		Quaternion localRotation = Quaternion.Euler (0, rotBody, 0);
 		this.transform.localRotation = localRotation;
 
-		rotCamera += ((rightJoystick.Vertical () != 0) ? rightJoystick.Vertical () : -Input.GetAxis("Mouse Y")) *1.5f;
+		rotCamera += ((mobile) ? -rightJoystick.Vertical () : -Input.GetAxis("Mouse Y")) *1.5f;
 		rotCamera = Mathf.Clamp (rotCamera, -55, 55);
 		localRotation = Quaternion.Euler (rotCamera, 0, 0);
 		vista.transform.localRotation = localRotation;

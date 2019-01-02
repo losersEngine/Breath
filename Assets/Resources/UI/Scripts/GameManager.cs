@@ -39,10 +39,12 @@ public class GameManager : MonoBehaviour {
         SceneManager.sceneLoaded += OnSceneLoaded;
         playing = false;
 
-        /*string device = mobileAndTabletCheck()?"mobile":"desktop";
-        manager.setDevice(device);*/
-       // manager = FindObjectOfType<UIManager>();
-        manager.setDevice("desktop");
+		manager = FindObjectOfType<UIManager>();
+
+        string device = mobileAndTabletCheck()?"mobile":"desktop";
+        manager.setDevice(device);
+        
+        //manager.setDevice("desktop");
 
     }
 
@@ -90,12 +92,12 @@ public class GameManager : MonoBehaviour {
         
         if (manager.scene.Contains("Level"))
         {
-
             manager.setLevel(getActualLevel());
             manager.instanceText();
         }
         else
         {
+			unlockCursor ();
             manager.InstantiateLanguage();
         }
 
@@ -170,7 +172,7 @@ public class GameManager : MonoBehaviour {
 
         if (playing)
         {
-
+			lockCursor ();
             FindObjectOfType<sceneManager>().initGame();
             manager.setActiveJoysticks(false, "joysticks"); //si es ordenador se esconden, si es movil, se muestran
 
@@ -189,6 +191,7 @@ public class GameManager : MonoBehaviour {
    
     public void setPauseMenu() {
 
+		unlockCursor ();
         manager = FindObjectOfType<UIManager>();
         FindObjectOfType<sceneManager>().setPauseMenu();
         manager.setPauseMenu();
@@ -205,6 +208,7 @@ public class GameManager : MonoBehaviour {
 
     public void backToGame() {
 
+		lockCursor ();
         manager = FindObjectOfType<UIManager>();
         manager.goToGame();
         FindObjectOfType<sceneManager>().setPauseMenu();
@@ -227,6 +231,7 @@ public class GameManager : MonoBehaviour {
     public void changeScene(string newScene)
     {
 
+		unlockCursor ();
         manager = FindObjectOfType<UIManager>();
         manager.SceneChanged();
         SceneManager.LoadScene(newScene);
@@ -245,4 +250,15 @@ public class GameManager : MonoBehaviour {
 
     }
 
+	///////////////////////////////////////////////////////////////////////////////////////
+
+	public void lockCursor(){
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+	}
+
+	public void unlockCursor(){
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
+	}
 }
