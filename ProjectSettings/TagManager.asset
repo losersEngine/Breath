@@ -16,6 +16,7 @@ TagManager:
   - text
   - targetCamera
   - Main Camera
+  - joysticks
   layers:
   - Default
   - TransparentFX

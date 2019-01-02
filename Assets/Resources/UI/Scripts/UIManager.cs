@@ -77,6 +77,30 @@ public class UIManager : MonoBehaviour {
 
     }
 
+    public void setActiveJoysticks(bool a, string tag)
+    {
+        if (device.Equals("desktop"))
+        {
+            
+            Image[] joysticks = GameObject.FindGameObjectWithTag(tag).GetComponentsInChildren<Image>();
+
+            foreach (Image i in joysticks)
+            {
+                i.enabled = false;
+            }
+
+        }
+        else //boton de pausa
+        {
+            GameObject b = Resources.Load<GameObject>("UI/Prefabs/pauseButton");
+            b = Instantiate(b);
+
+            string fileName = lang.Equals("Spanish") ? "configuracion" : "setting";
+            loadSprite(b.GetComponentInChildren<Image>(), "UI/Buttons", fileName);
+
+        }
+    }
+
     public void loadLevels(int actualLevel) {
 
         GameObject[] niveles = GameObject.FindGameObjectsWithTag("level");
@@ -167,6 +191,10 @@ public class UIManager : MonoBehaviour {
 
     public void setPauseMenu() {
 
+        if (GameObject.Find("pauseButton(Clone)"))
+        {
+            GameObject.Find("pauseButton(Clone)").GetComponentInChildren<Image>().enabled = false;
+        }
         string language = lang.Equals("Spanish") ? "es" : "en";
         GameObject menuPause = GameObject.Find("pause_" + language + "(Clone)");
         if (!menuPause) {
@@ -200,6 +228,14 @@ public class UIManager : MonoBehaviour {
     public void goToGame(){
 
         Destroy(GameObject.FindGameObjectWithTag("canvas"));
+        if (GameObject.Find("pauseButton(Clone)"))
+        {
+            Image button = GameObject.Find("pauseButton(Clone)").GetComponentInChildren<Image>();
+            button.enabled = true;
+            string fileName = lang.Equals("Spanish") ? "configuracion" : "setting";
+            loadSprite(button,"UI/Buttons", fileName);
+
+        }
 
     }
 
@@ -222,6 +258,8 @@ public class UIManager : MonoBehaviour {
     {
         GameObject parent = GameObject.FindGameObjectWithTag(tag);
         instance.transform.parent = parent.transform;
+
+        instance.transform.localEulerAngles = Vector3.zero;
         instance.transform.localPosition = Vector3.zero;
         instance.transform.localScale = new Vector3(1, 1, 1);
     }

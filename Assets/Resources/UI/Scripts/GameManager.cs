@@ -167,9 +167,14 @@ public class GameManager : MonoBehaviour {
     {
         manager = FindObjectOfType<UIManager>();
         this.playing = manager.nextText();
-    
-        if(playing)
+
+        if (playing)
+        {
+
             FindObjectOfType<sceneManager>().initGame();
+            manager.setActiveJoysticks(false, "joysticks"); //si es ordenador se esconden, si es movil, se muestran
+
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////
@@ -216,7 +221,7 @@ public class GameManager : MonoBehaviour {
     }
     public void exitGame()
     {
-        Application.Quit();
+        Application.OpenURL("https://losersengine.github.io/losersEngineWeb/");
     }
 
     public void changeScene(string newScene)

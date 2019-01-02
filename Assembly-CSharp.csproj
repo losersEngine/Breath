@@ -68,7 +68,6 @@
     <Compile Include="Assets\Resources\FPSControllerKevin\Scripts\MovementController.cs" />
     <Compile Include="Assets\Resources\FPSControllerKevin\Scripts\VirtualJoystick.cs" />
     <Compile Include="Assets\Resources\UI\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Resources\UI\Scripts\UIButton.cs" />
     <Compile Include="Assets\Resources\UI\Scripts\UIManager.cs" />
     <Compile Include="Assets\sceneManager.cs" />
     <Compile Include="Assets\SimpleLOD\Demo\Scripts\SimpleLODClickObject.cs" />
