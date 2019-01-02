@@ -1,12 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\sceneManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\UI\Scripts\GameManager.cs">
     <Files>
       <File FileName="Assets\Pointer.cs" Line="1" Column="1" />
-      <File FileName="Assets\PodiumController.cs" Line="32" Column="5" />
-      <File FileName="Assets\sceneManager.cs" Line="25" Column="5" />
-      <File FileName="Assets\Resources\FPSControllerKevin\Scripts\MovementController.cs" Line="84" Column="17" />
-      <File FileName="Assets\SceneChanger.cs" Line="23" Column="4" />
+      <File FileName="Assets\PodiumController.cs" Line="1" Column="1" />
+      <File FileName="Assets\sceneManager.cs" Line="81" Column="6" />
+      <File FileName="Assets\Resources\FPSControllerKevin\Scripts\MovementController.cs" Line="89" Column="24" />
+      <File FileName="Assets\SceneChanger.cs" Line="14" Column="41" />
+      <File FileName="Assets\Resources\UI\Scripts\GameManager.cs" Line="234" Column="19" />
+      <File FileName="Assets\Resources\UI\Scripts\UIManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
