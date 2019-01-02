@@ -16,6 +16,7 @@ TagManager:
   - text
   - targetCamera
   - Main Camera
+  - AnimatedDoor
   layers:
   - Default
   - TransparentFX
