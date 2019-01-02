@@ -15,10 +15,13 @@ public class sceneManager : MonoBehaviour {
 
 	private bool endGame;
 
+	private AudioSource sfxSource;
+
 	// Use this for initialization
 	void Start () {
 		gM = GameObject.FindObjectOfType<GameManager> ();
 		endGame = false;
+		sfxSource = GetComponent<AudioSource> ();
 		//initGame ();
 	}
 
@@ -76,6 +79,8 @@ public class sceneManager : MonoBehaviour {
 			Invoke ("stopAnimation", 5.5f);
 			//TODO:
 			//gM.saveGame ();
+			GameObject.FindGameObjectWithTag("AnimatedDoor").GetComponent<Animator>().SetTrigger("victory");
+			sfxSource.Play();
 		}
 	}
 
