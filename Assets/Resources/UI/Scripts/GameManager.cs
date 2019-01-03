@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour {
     private UIManager manager;
     private bool playing;
 
+	private bool mobile;
+
     private void Awake()
     {
         if (!FindObjectOfType<UIManager>())
@@ -43,6 +45,8 @@ public class GameManager : MonoBehaviour {
 
         string device = mobileAndTabletCheck()?"mobile":"desktop";
         manager.setDevice(device);
+
+		mobile = device.Equals("mobile");
         
         //manager.setDevice("desktop");
 
@@ -253,12 +257,16 @@ public class GameManager : MonoBehaviour {
 	///////////////////////////////////////////////////////////////////////////////////////
 
 	public void lockCursor(){
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
+		if (!mobile) {
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+		}
 	}
 
 	public void unlockCursor(){
-		Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
+		if (!mobile) {
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+		}
 	}
 }
