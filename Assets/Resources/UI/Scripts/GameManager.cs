@@ -194,7 +194,9 @@ public class GameManager : MonoBehaviour
 		return lvl;
 	}
 
-	public void saveGame(int lvl) {
+	public void saveGame() {
+
+        int lvl = getActualLevel();
 		int lvlSaved = this.loadGame ();
 
 		if (lvl > lvlSaved)
@@ -236,10 +238,11 @@ public class GameManager : MonoBehaviour
 
     public void loadLevel()
     {
-        int level = Load();
+        int level = loadGame();
         manager = FindObjectOfType<UIManager>();
         manager.loadLevels(level);
     }
+
     public void exitGame()
     {
         Application.OpenURL("https://losersengine.github.io/losersEngineWeb/");
