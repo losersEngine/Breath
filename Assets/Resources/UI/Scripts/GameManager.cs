@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     private UIManager manager;
     private bool playing;
 
+
     private bool mobile;
 
     private void Awake()
@@ -186,19 +187,18 @@ public class GameManager : MonoBehaviour
 
     ////////////////////////////////////////////////////////////////////////////////
 
-    public int loadGame()
-    {
-        int aux = PlayerPrefs.GetInt("LVL");
-        int lvl = (aux != null) ? aux : -1;
-        return lvl;
-    }
+   
+	public int loadGame(){
+		int aux = PlayerPrefs.GetInt ("LVL");
+		int lvl = (aux != null) ? aux : -1;
+		return lvl;
+	}
 
-    public void saveGame(int lvl)
-    {
-        int lvlSaved = this.loadGame();
+	public void saveGame(int lvl) {
+		int lvlSaved = this.loadGame ();
 
-        if (lvl > lvlSaved)
-            PlayerPrefs.SetInt("LVL", lvl);
+		if (lvl > lvlSaved)
+			PlayerPrefs.SetInt ("LVL", lvl);
     }
 
     //////////////////////////// PAUSE MENU ////////////////////////////////////////
@@ -231,7 +231,7 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<sceneManager>().setPauseMenu();
 
     }
-
+		
     ////////////////////////////////////////////////////////////////////////////////////
 
     public void loadLevel()
@@ -269,21 +269,18 @@ public class GameManager : MonoBehaviour
 
     ///////////////////////////////////////////////////////////////////////////////////////
 
-    public void lockCursor()
-    {
-        if (!mobile)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-    }
 
-    public void unlockCursor()
-    {
-        if (!mobile)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-    }
+	public void lockCursor(){
+		if (!mobile) {
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+		}
+	}
+
+	public void unlockCursor(){
+		if (!mobile) {
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+		}
+	}
 }

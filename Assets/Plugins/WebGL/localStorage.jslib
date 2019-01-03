@@ -1,5 +1,6 @@
 var JSLib = {
 
+<<<<<<< HEAD
 Load: function()
 {
   var lvlJson = localStorage.getItem('LVL');
@@ -16,10 +17,11 @@ Save: function(lvl)
   }
 },
 
+=======
+>>>>>>> 5f4245200eaef8a1767dd87e4e8e72c87d15e4ce
 mobileAndTabletCheck: function()
 {
   var check = (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-  //SendMessage('GameManager', 'isMobile', check);
   return check;
 }
 
