@@ -152,7 +152,7 @@ public class UIManager : MonoBehaviour {
     public void instanceText()
     {
         string language = lang.Equals("Spanish") ? "es" : "en";
-        GameObject canvas = Resources.Load<GameObject>("UI/Prefabs/Level_" + language);
+        GameObject canvas = Resources.Load<GameObject>("UI/Prefabs/Level");
         Instantiate(canvas);
         GameObject nextText = Resources.Load<GameObject>("UI/Text/" + language + "/" + scene + "_1");
         GameObject obj = Instantiate(nextText);
@@ -183,7 +183,7 @@ public class UIManager : MonoBehaviour {
         }
         else
         {
-            DestroyPrefab("Level_" + language + "(Clone)");
+            DestroyPrefab("Level(Clone)");
             return true;
         }
 
@@ -216,6 +216,7 @@ public class UIManager : MonoBehaviour {
         GameObject menu = Resources.Load<GameObject>("UI/Prefabs/settings_" + language);
         GameObject obj = Instantiate(menu);
         setParent(obj, "prefab");
+        obj.transform.localScale = new Vector3(0.6f,0.6f,0.6f);
 
         GameObject.Find("back").GetComponent<Button>().onClick.AddListener(() => {
 
@@ -257,8 +258,7 @@ public class UIManager : MonoBehaviour {
     private void setParent(GameObject instance, string tag)
     {
         GameObject parent = GameObject.FindGameObjectWithTag(tag);
-        instance.transform.parent = parent.transform;
-
+        instance.transform.SetParent(parent.transform,false);
         instance.transform.localEulerAngles = Vector3.zero;
         instance.transform.localPosition = Vector3.zero;
         instance.transform.localScale = new Vector3(1, 1, 1);
@@ -268,6 +268,8 @@ public class UIManager : MonoBehaviour {
     void Update () {
 		
 	}
+
+    
 
 
 }

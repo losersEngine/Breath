@@ -14,14 +14,12 @@ public class sceneManager : MonoBehaviour {
 	private MovementController playerAct;
 
 	private bool endGame;
-
-	private AudioSource sfxSource;
+	private AudioSource sfx;
 
 	// Use this for initialization
 	void Start () {
 		gM = GameObject.FindObjectOfType<GameManager> ();
 		endGame = false;
-		sfxSource = GetComponent<AudioSource> ();
 		//initGame ();
 	}
 
@@ -29,6 +27,8 @@ public class sceneManager : MonoBehaviour {
     {
 		GameObject aux = Instantiate(Resources.Load<GameObject>("FPSControllerKevin/Prefabs/Player"));
         aux.transform.SetPositionAndRotation(startPlayer.transform.position, startPlayer.transform.rotation);
+
+		sfx = this.GetComponent<AudioSource> ();
 
 		playerAct = aux.GetComponent<MovementController> ();
     }
@@ -66,7 +66,7 @@ public class sceneManager : MonoBehaviour {
 		int i = 0;
 
 		while (correct && i < objectsPlaces.Length) {
-			correct = podiumsLevel [i].getItemTag ().Equals (objectsPlaces[i]);
+			correct = podiumsLevel [i].getItemName().Equals (objectsPlaces[i]);
 			i++;
 		}
 
@@ -75,12 +75,12 @@ public class sceneManager : MonoBehaviour {
 
 			playerAct.setFixedAnim(true);
 			endGame = true;
+			sfx.Play ();
 
 			Invoke ("stopAnimation", 5.5f);
 			//TODO:
 			//gM.saveGame ();
-			GameObject.FindGameObjectWithTag("AnimatedDoor").GetComponent<Animator>().SetTrigger("victory");
-			sfxSource.Play();
+			GameObject.FindObjectOfType<finalDoor>().openDoor();
 		}
 	}
 

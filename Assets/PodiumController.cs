@@ -58,9 +58,9 @@ public class PodiumController : MonoBehaviour {
 		return toReturn;
 	}
 
-	public string getItemTag(){
+	public string getItemName(){
 		if (placed != null) {
-			return placed.tag;
+			return placed.name;
 		} else {
 			return "none";
 		}
