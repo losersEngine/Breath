@@ -164,9 +164,6 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////
-
-
     /// ///////////////////////// IN GAME TEXT ////////////////////////////////////////
 
     public void nextText()
@@ -183,12 +180,19 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////
    
-    public void saveGame() {
-        
-        //Save();
+	public int loadGame(){
+		int aux = PlayerPrefs.GetInt ("LVL");
+		int lvl = (aux != null) ? aux : -1;
+		return lvl;
+	}
 
+	public void saveGame(int lvl) {
+		int lvlSaved = this.loadGame ();
+
+		if (lvl > lvlSaved)
+			PlayerPrefs.SetInt ("LVL", lvl);
     }
 
     //////////////////////////// PAUSE MENU ////////////////////////////////////////
@@ -218,7 +222,7 @@ public class GameManager : MonoBehaviour {
         FindObjectOfType<sceneManager>().setPauseMenu();
 
     }
-
+		
     ////////////////////////////////////////////////////////////////////////////////////
 
     public void loadLevel()
