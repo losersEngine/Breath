@@ -79,7 +79,7 @@ public class sceneManager : MonoBehaviour {
 
 			Invoke ("stopAnimation", 5.5f);
 			//TODO:
-			//gM.saveGame ();
+			gM.saveGame();
 			GameObject.FindObjectOfType<finalDoor>().openDoor();
 		}
 	}
