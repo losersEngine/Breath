@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
     [DllImport("__Internal")]
     private static extern int Load();
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour {
     public GameObject uiManager;
     private UIManager manager;
     private bool playing;
+
+    private bool mobile;
 
     private void Awake()
     {
@@ -39,16 +42,19 @@ public class GameManager : MonoBehaviour {
         SceneManager.sceneLoaded += OnSceneLoaded;
         playing = false;
 
-		manager = FindObjectOfType<UIManager>();
+        manager = FindObjectOfType<UIManager>();
 
-        string device = mobileAndTabletCheck()?"mobile":"desktop";
+        string device = mobileAndTabletCheck() ? "mobile" : "desktop";
         manager.setDevice(device);
-        
+
+       mobile = device.Equals("mobile");
+
         //manager.setDevice("desktop");
 
     }
 
-    public bool isPlaying() {
+    public bool isPlaying()
+    {
 
         return playing;
     }
@@ -70,7 +76,7 @@ public class GameManager : MonoBehaviour {
 
         manager.scene = scene;
         manager.InstantiateLanguage();
-        
+
         if (manager.scene.Equals("settings"))
         {
             setSettingsValues();
@@ -78,7 +84,7 @@ public class GameManager : MonoBehaviour {
                 changeUIScene("main_menu");
             });
         }
-        if (manager.scene.Equals("level_selector"))
+        else if (manager.scene.Equals("level_selector"))
         {
             loadLevel();
         }
@@ -89,7 +95,7 @@ public class GameManager : MonoBehaviour {
     {
         manager.scene = scene.name;
 
-        
+
         if (manager.scene.Contains("Level"))
         {
             manager.setLevel(getActualLevel());
@@ -97,7 +103,7 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
-			unlockCursor ();
+            unlockCursor();
             manager.InstantiateLanguage();
         }
 
@@ -105,11 +111,12 @@ public class GameManager : MonoBehaviour {
 
     //////////////////////////////////////////// MENU CONFIGURACION /////////////////////////////////////////////////////////////////////////////////
 
-    private void setSettingsValues() {
+    private void setSettingsValues()
+    {
 
         //antialiasing
         Slider antialiasing = GameObject.Find("sliderAntialiasing").GetComponent<Slider>();
-        antialiasing.value = QualitySettings.antiAliasing == 0?0: Mathf.Log(QualitySettings.antiAliasing,2);
+        antialiasing.value = QualitySettings.antiAliasing == 0 ? 0 : Mathf.Log(QualitySettings.antiAliasing, 2);
 
         //volume
         Slider volume = GameObject.Find("sliderVolume").GetComponent<Slider>();
@@ -121,7 +128,7 @@ public class GameManager : MonoBehaviour {
     {
         Slider slider = obj.GetComponent<Slider>();
 
-        if(slider.value == 0)
+        if (slider.value == 0)
         {
 
             QualitySettings.antiAliasing = 0;
@@ -141,16 +148,17 @@ public class GameManager : MonoBehaviour {
         AudioListener.volume = slider.value;
     }
 
-    public void SetLanguage(int value)
+    public void SetLanguage()
     {
 
         manager = FindObjectOfType<UIManager>();
         Image l = GameObject.Find("languageOp").GetComponent<Image>();
+        string actualLanguage = manager.getLanguage();
 
-        if (value == 0) //es
+        if (actualLanguage.Equals("English")) // cambiar a es
         {
             manager.setLanguage("Spanish");
-            manager.loadSprite(l, "UI/Images","español");
+            manager.loadSprite(l, "UI/Images", "español");
         }
         else //en
         {
@@ -159,9 +167,6 @@ public class GameManager : MonoBehaviour {
         }
 
     }
-
-    ////////////////////////////////////////////////////////////////////////////////////
-
 
     /// ///////////////////////// IN GAME TEXT ////////////////////////////////////////
 
@@ -172,33 +177,44 @@ public class GameManager : MonoBehaviour {
 
         if (playing)
         {
-			lockCursor ();
+            lockCursor();
             FindObjectOfType<sceneManager>().initGame();
             manager.setActiveJoysticks(false, "joysticks"); //si es ordenador se esconden, si es movil, se muestran
 
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////
-   
-    public void saveGame() {
-        
-        //Save();
+    ////////////////////////////////////////////////////////////////////////////////
 
+    public int loadGame()
+    {
+        int aux = PlayerPrefs.GetInt("LVL");
+        int lvl = (aux != null) ? aux : -1;
+        return lvl;
+    }
+
+    public void saveGame(int lvl)
+    {
+        int lvlSaved = this.loadGame();
+
+        if (lvl > lvlSaved)
+            PlayerPrefs.SetInt("LVL", lvl);
     }
 
     //////////////////////////// PAUSE MENU ////////////////////////////////////////
-   
-    public void setPauseMenu() {
 
-		unlockCursor ();
+    public void setPauseMenu()
+    {
+
+        unlockCursor();
         manager = FindObjectOfType<UIManager>();
         FindObjectOfType<sceneManager>().setPauseMenu();
         manager.setPauseMenu();
 
     }
 
-    public void goToSettings() {
+    public void goToSettings()
+    {
 
         manager = FindObjectOfType<UIManager>();
         manager.goToSettings();
@@ -206,9 +222,10 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    public void backToGame() {
+    public void backToGame()
+    {
 
-		lockCursor ();
+        lockCursor();
         manager = FindObjectOfType<UIManager>();
         manager.goToGame();
         FindObjectOfType<sceneManager>().setPauseMenu();
@@ -231,7 +248,7 @@ public class GameManager : MonoBehaviour {
     public void changeScene(string newScene)
     {
 
-		unlockCursor ();
+        unlockCursor();
         manager = FindObjectOfType<UIManager>();
         manager.SceneChanged();
         SceneManager.LoadScene(newScene);
@@ -243,22 +260,30 @@ public class GameManager : MonoBehaviour {
     {
 
         playing = GameObject.FindGameObjectWithTag("Player") != null;
-        if (playing && Input.GetKeyDown(KeyCode.Escape))
+        if (playing && Input.GetKeyDown(KeyCode.P))
         {
             setPauseMenu();
         }
 
     }
 
-	///////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////
 
-	public void lockCursor(){
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
-	}
+    public void lockCursor()
+    {
+        if (!mobile)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
 
-	public void unlockCursor(){
-		Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
-	}
+    public void unlockCursor()
+    {
+        if (!mobile)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
 }

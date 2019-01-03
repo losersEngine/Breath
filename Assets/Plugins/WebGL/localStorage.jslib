@@ -10,7 +10,7 @@ Load: function()
 
 Save: function(lvl)
 {
-  var lvlSaved = this.Load();
+  var lvlSaved = JSLib.Load();
   if (lvl > lvlSaved){
     localStorage.setItem('LVL', JSON.stringify( { "lvl": lvl } ));
   }
