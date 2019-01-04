@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject uiManager;
 	private static UIManager manager;
     private bool playing;
+    private VideoPlayer videoGO;
 
 	private static bool mobile;
 
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour
         //manager = FindObjectOfType<UIManager>();
 
         //string device = mobileAndTabletCheck() ? "mobile" : "desktop";
-		string device = "mobile";
+		string device = "desktop";
 
         manager.setDevice(device);
         mobile = device.Equals("mobile");
@@ -99,9 +101,26 @@ public class GameManager : MonoBehaviour
         else
         {
             unlockCursor();
-            manager.InstantiateLanguage();
+
+            if (manager.scene.Equals("game_over"))
+            {
+                videoGO = GameObject.FindGameObjectWithTag("video").GetComponent<VideoPlayer>();
+                videoGO.Play();
+                videoGO.loopPointReached += setGO;
+            }
+            else
+            {
+                manager.InstantiateLanguage();
+            }
         }
 
+    }
+
+    private void setGO(VideoPlayer vp)
+    {
+
+        manager.instantiateGO();
+            
     }
 
     //////////////////////////////////////////// MENU CONFIGURACION /////////////////////////////////////////////////////////////////////////////////

@@ -12297,6 +12297,11 @@ Prefab:
       propertyPath: m_Name
       value: LightPlaceHolder (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 114732081202270016, guid: a525a503c3a0f23439f72147f2fe2bdf,
+        type: 2}
+      propertyPath: placed
+      value: 
+      objectReference: {fileID: 1809297342}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a525a503c3a0f23439f72147f2fe2bdf, type: 2}
   m_IsPrefabAsset: 0
@@ -21546,7 +21551,7 @@ Prefab:
         type: 2}
       propertyPath: placed
       value: 
-      objectReference: {fileID: 1809297342}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a525a503c3a0f23439f72147f2fe2bdf, type: 2}
   m_IsPrefabAsset: 0

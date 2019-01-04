@@ -244,6 +244,12 @@ public class UIManager : MonoBehaviour {
 
     }
 
+    public void instantiateGO()
+    {
+        string language = lang.Equals("Spanish") ? "es" : "en";
+        GameObject buttons = Resources.Load<GameObject>("UI/Prefabs/game_over_" + language);
+        Instantiate(buttons);
+    }
     public void destroyMessageInteract()
     {
         Destroy(GameObject.FindGameObjectWithTag("text"));
