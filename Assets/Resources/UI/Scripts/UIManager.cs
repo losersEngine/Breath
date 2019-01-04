@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour {
     private GameObject instance;
     private int actualLevel = 1;
     private string device;
-    private int[] numTextsByLevel = { 2, 1, 1, 1, 1 };
+    private int[] numTextsByLevel = { 2, 1, 1, 1, 2 };
 
 
     public void setDevice(string device)
@@ -94,10 +94,6 @@ public class UIManager : MonoBehaviour {
         {
             GameObject b = Resources.Load<GameObject>("UI/Prefabs/pauseButton");
             b = Instantiate(b);
-
-            string fileName = lang.Equals("Spanish") ? "configuracion" : "setting";
-            loadSprite(b.GetComponentInChildren<Image>(), "UI/Buttons", fileName);
-
         }
     }
 
@@ -152,7 +148,7 @@ public class UIManager : MonoBehaviour {
     public void instanceText()
     {
         string language = lang.Equals("Spanish") ? "es" : "en";
-        GameObject canvas = Resources.Load<GameObject>("UI/Prefabs/Level");
+        GameObject canvas = Resources.Load<GameObject>("UI/Prefabs/Level_" + language);
         Instantiate(canvas);
         GameObject nextText = Resources.Load<GameObject>("UI/Text/" + language + "/" + scene + "_1");
         GameObject obj = Instantiate(nextText);
@@ -183,7 +179,7 @@ public class UIManager : MonoBehaviour {
         }
         else
         {
-            DestroyPrefab("Level(Clone)");
+            DestroyPrefab("Level_" + language + "(Clone)");
             return true;
         }
 
@@ -233,8 +229,6 @@ public class UIManager : MonoBehaviour {
         {
             Image button = GameObject.Find("pauseButton(Clone)").GetComponentInChildren<Image>();
             button.enabled = true;
-            string fileName = lang.Equals("Spanish") ? "configuracion" : "setting";
-            loadSprite(button,"UI/Buttons", fileName);
 
         }
 
@@ -250,6 +244,13 @@ public class UIManager : MonoBehaviour {
 
     }
 
+    public void instantiateGO()
+    {
+        string language = lang.Equals("Spanish") ? "es" : "en";
+        GameObject buttons = Resources.Load<GameObject>("UI/Prefabs/game_over_" + language);
+        Instantiate(buttons);
+
+    }
     public void destroyMessageInteract()
     {
         Destroy(GameObject.FindGameObjectWithTag("text"));

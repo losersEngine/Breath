@@ -4,23 +4,22 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
 
     [DllImport("__Internal")]
-    private static extern int Load();
-    [DllImport("__Internal")]
-    private static extern void Save(int level);
-    [DllImport("__Internal")]
     private static extern bool mobileAndTabletCheck();
 
     public GameObject uiManager;
-    private UIManager manager;
+	private static UIManager manager;
     private bool playing;
+    private VideoPlayer videoGO;
+    private static AudioSource click;
+    private static AudioSource gameOverMusic;
 
-
-    private bool mobile;
+    private static bool mobile;
 
     private void Awake()
     {
@@ -39,18 +38,17 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-
+        click = GetComponent<AudioSource>();
+        click.clip =  Resources.Load<AudioClip>("Music/SFX/click_button");
         SceneManager.sceneLoaded += OnSceneLoaded;
         playing = false;
 
-        manager = FindObjectOfType<UIManager>();
+        //manager = FindObjectOfType<UIManager>();
 
-        string device = mobileAndTabletCheck() ? "mobile" : "desktop";
+		string device = "desktop";
+        //string device = mobileAndTabletCheck() ? "mobile" : "desktop";
         manager.setDevice(device);
-
-       mobile = device.Equals("mobile");
-
-        //manager.setDevice("desktop");
+        mobile = device.Equals("desktop");
 
     }
 
@@ -72,7 +70,7 @@ public class GameManager : MonoBehaviour
     public void changeUIScene(string scene)
     {
 
-        manager = FindObjectOfType<UIManager>();
+        //manager = FindObjectOfType<UIManager>();
         manager.DestroyWithTag("prefab");
 
         manager.scene = scene;
@@ -105,9 +103,30 @@ public class GameManager : MonoBehaviour
         else
         {
             unlockCursor();
-            manager.InstantiateLanguage();
+
+            if (manager.scene.Equals("game_over"))
+            {
+                gameOverMusic = GameObject.FindGameObjectWithTag("video").GetComponent<AudioSource>();
+                gameOverMusic.clip = Resources.Load<AudioClip>("Music/Music/GameOver_music");
+                gameOverMusic.Play();
+                videoGO = GameObject.FindGameObjectWithTag("video").GetComponent<VideoPlayer>();
+                videoGO.Play();
+                videoGO.loopPointReached += setGO;
+
+            }
+            else
+            {
+                manager.InstantiateLanguage();
+            }
         }
 
+    }
+
+    private void setGO(VideoPlayer vp)
+    {
+
+        manager.instantiateGO();
+            
     }
 
     //////////////////////////////////////////// MENU CONFIGURACION /////////////////////////////////////////////////////////////////////////////////
@@ -152,7 +171,7 @@ public class GameManager : MonoBehaviour
     public void SetLanguage()
     {
 
-        manager = FindObjectOfType<UIManager>();
+        //manager = FindObjectOfType<UIManager>();
         Image l = GameObject.Find("languageOp").GetComponent<Image>();
         string actualLanguage = manager.getLanguage();
 
@@ -173,20 +192,34 @@ public class GameManager : MonoBehaviour
 
     public void nextText()
     {
-        manager = FindObjectOfType<UIManager>();
+        //manager = FindObjectOfType<UIManager>();
         this.playing = manager.nextText();
 
-        if (playing)
+        if (manager.scene.Equals("Level5")) {
+
+            changeScene("main_menu");
+        }
+        else
         {
-            lockCursor();
-            FindObjectOfType<sceneManager>().initGame();
-            manager.setActiveJoysticks(false, "joysticks"); //si es ordenador se esconden, si es movil, se muestran
+
+            if (playing){
+
+                lockCursor();
+                FindObjectOfType<sceneManager>().initGame();
+                manager.setActiveJoysticks(false, "joysticks"); //si es ordenador se esconden, si es movil, se muestran
+
+            }
 
         }
+        
     }
 
     ////////////////////////////////////////////////////////////////////////////////
 
+    public void Click()
+    {
+        click.Play();
+    }
    
 	public int loadGame(){
 		int aux = PlayerPrefs.GetInt ("LVL");
@@ -209,7 +242,7 @@ public class GameManager : MonoBehaviour
     {
 
         unlockCursor();
-        manager = FindObjectOfType<UIManager>();
+        //manager = FindObjectOfType<UIManager>();
         FindObjectOfType<sceneManager>().setPauseMenu();
         manager.setPauseMenu();
 
@@ -218,7 +251,7 @@ public class GameManager : MonoBehaviour
     public void goToSettings()
     {
 
-        manager = FindObjectOfType<UIManager>();
+        //manager = FindObjectOfType<UIManager>();
         manager.goToSettings();
         setSettingsValues();
 
@@ -228,7 +261,7 @@ public class GameManager : MonoBehaviour
     {
 
         lockCursor();
-        manager = FindObjectOfType<UIManager>();
+        //manager = FindObjectOfType<UIManager>();
         manager.goToGame();
         FindObjectOfType<sceneManager>().setPauseMenu();
 
@@ -239,7 +272,7 @@ public class GameManager : MonoBehaviour
     public void loadLevel()
     {
         int level = loadGame();
-        manager = FindObjectOfType<UIManager>();
+        //manager = FindObjectOfType<UIManager>();
         manager.loadLevels(level);
     }
 
@@ -252,7 +285,7 @@ public class GameManager : MonoBehaviour
     {
 
         unlockCursor();
-        manager = FindObjectOfType<UIManager>();
+        //manager = FindObjectOfType<UIManager>();
         manager.SceneChanged();
         SceneManager.LoadScene(newScene);
 
