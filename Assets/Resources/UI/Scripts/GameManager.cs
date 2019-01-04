@@ -40,8 +40,8 @@ public class GameManager : MonoBehaviour
 
         //manager = FindObjectOfType<UIManager>();
 
-        string device = mobileAndTabletCheck() ? "mobile" : "desktop";
-		//string device = "mobile";
+        //string device = mobileAndTabletCheck() ? "mobile" : "desktop";
+		string device = "mobile";
 
         manager.setDevice(device);
         mobile = device.Equals("mobile");

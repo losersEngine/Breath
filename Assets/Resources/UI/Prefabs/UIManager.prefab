@@ -53,13 +53,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lang: Spanish
   es:
-  - {fileID: 1012949403896404, guid: 884439b907c85344c97595e2d3d770ca, type: 2}
+  - {fileID: 1437427609837840, guid: 884439b907c85344c97595e2d3d770ca, type: 2}
   - {fileID: 1635392109411106, guid: 88d276918c98290449859dcb95212fef, type: 2}
-  - {fileID: 1416114726212022, guid: ea67228e4219ffb4b9f5bb8975ce9819, type: 2}
-  - {fileID: 1897838728264654, guid: 436b23dc2a71e5e4189e82ac587051ef, type: 2}
+  - {fileID: 1622910857142944, guid: ea67228e4219ffb4b9f5bb8975ce9819, type: 2}
+  - {fileID: 1607621340563248, guid: 2f4d5a1b51c2d3b45ba9baf86a4593a3, type: 2}
   en:
   - {fileID: 1514217429016734, guid: 07c27becdb9618e47907b22a277f9122, type: 2}
-  - {fileID: 1840213176598120, guid: b385a51d5c575e344af51f96f05039b7, type: 2}
+  - {fileID: 1250954739231900, guid: b385a51d5c575e344af51f96f05039b7, type: 2}
   - {fileID: 1068638166609100, guid: 92d73e28f7340224f90671a98b87b739, type: 2}
   - {fileID: 1472566212303670, guid: 689d17a7a567e7544a96a8177561e267, type: 2}
   scene: 

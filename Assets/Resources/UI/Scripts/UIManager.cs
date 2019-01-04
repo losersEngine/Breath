@@ -148,7 +148,7 @@ public class UIManager : MonoBehaviour {
     public void instanceText()
     {
         string language = lang.Equals("Spanish") ? "es" : "en";
-        GameObject canvas = Resources.Load<GameObject>("UI/Prefabs/Level");
+        GameObject canvas = Resources.Load<GameObject>("UI/Prefabs/Level_" + language);
         Instantiate(canvas);
         GameObject nextText = Resources.Load<GameObject>("UI/Text/" + language + "/" + scene + "_1");
         GameObject obj = Instantiate(nextText);
@@ -179,7 +179,7 @@ public class UIManager : MonoBehaviour {
         }
         else
         {
-            DestroyPrefab("Level(Clone)");
+            DestroyPrefab("Level_" + language + "(Clone)");
             return true;
         }
 
@@ -229,8 +229,6 @@ public class UIManager : MonoBehaviour {
         {
             Image button = GameObject.Find("pauseButton(Clone)").GetComponentInChildren<Image>();
             button.enabled = true;
-            string fileName = lang.Equals("Spanish") ? "configuracion" : "setting";
-            loadSprite(button,"UI/Buttons", fileName);
 
         }
 
