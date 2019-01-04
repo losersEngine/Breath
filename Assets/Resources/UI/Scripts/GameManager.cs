@@ -42,10 +42,17 @@ public class GameManager : MonoBehaviour
 
         //manager = FindObjectOfType<UIManager>();
 
+<<<<<<< HEAD
         //string device = mobileAndTabletCheck() ? "mobile" : "desktop";
 		string device = "desktop";
 
         manager.setDevice(device);
+=======
+		string device = "desktop";
+        //string device = mobileAndTabletCheck() ? "mobile" : "desktop";
+        manager.setDevice(device);
+
+>>>>>>> 022d81ad0d6e20d3183b3664b79c5fd4ef0ba29c
         mobile = device.Equals("mobile");
 
     }
