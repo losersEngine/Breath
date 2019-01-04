@@ -7,102 +7,49 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: StylizedWater_Desktop 1
-  m_Shader: {fileID: 47, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_Shader: {fileID: 4800000, guid: 86282aca396e36c47943004c99dcacfd, type: 3}
+  m_ShaderKeywords: _EMISSION
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _Normals:
         m_Texture: {fileID: 2800002, guid: 25be536d4cba2c14d9dcf7d4902ed079, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _Reflection:
-        m_Texture: {fileID: 8900000, guid: c45765937ebc6e1469253300f2f25cdf, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Shadermap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SpecGlossMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: e4fd99d96eb8a1a4b9387c7b98baed1e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _BumpScale: 1
     - _Cutoff: 0.5
-    - _Depth: 9.9
-    - _Depthdarkness: 0.207
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
+    - _Depth: 6.4
+    - _Depthdarkness: 0.5
     - _Fresnelexponent: 4
-    - _Glossiness: 0.383
-    - _GlossyReflections: 1
-    - _Metallic: 0
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _RefractionAmount: 0.132
-    - _RimSize: 1.46
-    - _Rimfalloff: 0.25
-    - _Rimtiling: 2
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _SurfaceHighlight: 0.201
-    - _SurfaceHightlighttiling: 0.25
+    - _Glossiness: 0.128
+    - _RefractionAmount: 0.1
+    - _RimSize: 0.3
+    - _Rimfalloff: 0.24
+    - _Rimtiling: -0.52
+    - _SurfaceHighlight: 0
+    - _SurfaceHightlighttiling: 0.75
     - _Surfacehightlightsize: 0
-    - _Tiling: 0.684
-    - _Transparency: 0.411
-    - _UVSec: 0
-    - _Wavesspeed: 1.56
-    - _Wavesstrength: 0.326
+    - _Tesselation: 0.1
+    - _Tiling: 0.125
+    - _Transparency: 0
+    - _Wavesspeed: 0.33
+    - _Wavesstrength: 0
     - _Worldspacetiling: 0
-    - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FresnelColor: {r: 1, g: 1, b: 1, a: 0.5019608}
-    - _RimColor: {r: 0.1549929, g: 0.23455672, b: 0.4056604, a: 1}
+    - _RimColor: {r: 0.9575472, g: 1, b: 0.9944434, a: 0.941}
     - _WaterColor: {r: 0, g: 0.503546, b: 1, a: 1}
