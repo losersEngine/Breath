@@ -46,7 +46,7 @@ public class JoyButton : MonoBehaviour, IPointerDownHandler {
 	private void drop(){
 		PodiumController pointed = pointer.getPointing ();
 
-		if (pointed != null) {
+		if (pointed != null && pointed.isEmpty()) {
 			GameObject aux = carry;
 			carry = null;
 			pointed.PlaceItem (aux);

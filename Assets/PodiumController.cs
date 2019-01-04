@@ -65,4 +65,8 @@ public class PodiumController : MonoBehaviour {
 			return "none";
 		}
 	}
+
+	public bool isEmpty(){
+		return placed == null;
+	}
 }

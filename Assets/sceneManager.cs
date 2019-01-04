@@ -20,7 +20,7 @@ public class sceneManager : MonoBehaviour {
 	void Start () {
 		gM = GameObject.FindObjectOfType<GameManager> ();
 		endGame = false;
-		//initGame ();
+		initGame ();
 	}
 
     public void initGame()
