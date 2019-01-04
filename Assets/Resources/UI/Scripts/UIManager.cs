@@ -94,10 +94,6 @@ public class UIManager : MonoBehaviour {
         {
             GameObject b = Resources.Load<GameObject>("UI/Prefabs/pauseButton");
             b = Instantiate(b);
-
-            string fileName = lang.Equals("Spanish") ? "configuracion" : "setting";
-            loadSprite(b.GetComponentInChildren<Image>(), "UI/Buttons", fileName);
-
         }
     }
 

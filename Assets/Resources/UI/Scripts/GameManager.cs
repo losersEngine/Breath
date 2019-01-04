@@ -9,18 +9,13 @@ public class GameManager : MonoBehaviour
 {
 
     [DllImport("__Internal")]
-    private static extern int Load();
-    [DllImport("__Internal")]
-    private static extern void Save(int level);
-    [DllImport("__Internal")]
     private static extern bool mobileAndTabletCheck();
 
     public GameObject uiManager;
-    private UIManager manager;
+	private static UIManager manager;
     private bool playing;
 
-
-    private bool mobile;
+	private static bool mobile;
 
     private void Awake()
     {
@@ -43,14 +38,13 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
         playing = false;
 
-        manager = FindObjectOfType<UIManager>();
+        //manager = FindObjectOfType<UIManager>();
 
         string device = mobileAndTabletCheck() ? "mobile" : "desktop";
+		//string device = "mobile";
+
         manager.setDevice(device);
-
-       mobile = device.Equals("mobile");
-
-        //manager.setDevice("desktop");
+        mobile = device.Equals("mobile");
 
     }
 
@@ -72,7 +66,7 @@ public class GameManager : MonoBehaviour
     public void changeUIScene(string scene)
     {
 
-        manager = FindObjectOfType<UIManager>();
+        //manager = FindObjectOfType<UIManager>();
         manager.DestroyWithTag("prefab");
 
         manager.scene = scene;
@@ -152,7 +146,7 @@ public class GameManager : MonoBehaviour
     public void SetLanguage()
     {
 
-        manager = FindObjectOfType<UIManager>();
+        //manager = FindObjectOfType<UIManager>();
         Image l = GameObject.Find("languageOp").GetComponent<Image>();
         string actualLanguage = manager.getLanguage();
 
@@ -173,7 +167,7 @@ public class GameManager : MonoBehaviour
 
     public void nextText()
     {
-        manager = FindObjectOfType<UIManager>();
+        //manager = FindObjectOfType<UIManager>();
         this.playing = manager.nextText();
 
         if (playing)
@@ -209,7 +203,7 @@ public class GameManager : MonoBehaviour
     {
 
         unlockCursor();
-        manager = FindObjectOfType<UIManager>();
+        //manager = FindObjectOfType<UIManager>();
         FindObjectOfType<sceneManager>().setPauseMenu();
         manager.setPauseMenu();
 
@@ -218,7 +212,7 @@ public class GameManager : MonoBehaviour
     public void goToSettings()
     {
 
-        manager = FindObjectOfType<UIManager>();
+        //manager = FindObjectOfType<UIManager>();
         manager.goToSettings();
         setSettingsValues();
 
@@ -228,7 +222,7 @@ public class GameManager : MonoBehaviour
     {
 
         lockCursor();
-        manager = FindObjectOfType<UIManager>();
+        //manager = FindObjectOfType<UIManager>();
         manager.goToGame();
         FindObjectOfType<sceneManager>().setPauseMenu();
 
@@ -239,7 +233,7 @@ public class GameManager : MonoBehaviour
     public void loadLevel()
     {
         int level = loadGame();
-        manager = FindObjectOfType<UIManager>();
+        //manager = FindObjectOfType<UIManager>();
         manager.loadLevels(level);
     }
 
@@ -252,7 +246,7 @@ public class GameManager : MonoBehaviour
     {
 
         unlockCursor();
-        manager = FindObjectOfType<UIManager>();
+        //manager = FindObjectOfType<UIManager>();
         manager.SceneChanged();
         SceneManager.LoadScene(newScene);
 
