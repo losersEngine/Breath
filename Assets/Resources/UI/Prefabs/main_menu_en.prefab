@@ -73,6 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224022339892243890}
+  - component: {fileID: 222643992385429552}
   m_Layer: 5
   m_Name: main_menu_en
   m_TagString: prefab
@@ -192,6 +193,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114754686167707648, guid: 3c200f27a4cc2864e8c4180a830ab01b,
           type: 2}
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114754686167707648, guid: 3c200f27a4cc2864e8c4180a830ab01b,
+          type: 2}
         m_MethodName: changeScene
         m_Mode: 5
         m_Arguments:
@@ -299,7 +312,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114754686167707648, guid: 3c200f27a4cc2864e8c4180a830ab01b,
           type: 2}
-        m_MethodName: exitGame
+        m_MethodName: Click
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -307,6 +320,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Level2
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114754686167707648, guid: 3c200f27a4cc2864e8c4180a830ab01b,
+          type: 2}
+        m_MethodName: changeScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: game_over
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -406,6 +431,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114754686167707648, guid: 3c200f27a4cc2864e8c4180a830ab01b,
           type: 2}
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114754686167707648, guid: 3c200f27a4cc2864e8c4180a830ab01b,
+          type: 2}
         m_MethodName: changeUIScene
         m_Mode: 5
         m_Arguments:
@@ -471,6 +508,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 114754686167707648, guid: 3c200f27a4cc2864e8c4180a830ab01b,
+          type: 2}
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 114754686167707648, guid: 3c200f27a4cc2864e8c4180a830ab01b,
           type: 2}
         m_MethodName: changeUIScene
@@ -613,6 +662,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114754686167707648, guid: 3c200f27a4cc2864e8c4180a830ab01b,
           type: 2}
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114754686167707648, guid: 3c200f27a4cc2864e8c4180a830ab01b,
+          type: 2}
         m_MethodName: changeUIScene
         m_Mode: 5
         m_Arguments:
@@ -645,6 +706,13 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1453569644850330}
+  m_CullTransparentMesh: 0
+--- !u!222 &222643992385429552
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1514217429016734}
   m_CullTransparentMesh: 0
 --- !u!222 &222708967702151164
 CanvasRenderer:
@@ -712,10 +780,10 @@ RectTransform:
   m_Father: {fileID: 224022339892243890}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.643}
-  m_AnchorMin: {x: 0.16229168, y: 0.263}
-  m_AnchorMax: {x: 0.336875, y: 0.39800003}
-  m_AnchoredPosition: {x: 6, y: -3.5}
-  m_SizeDelta: {x: 6.9, y: -5}
+  m_AnchorMin: {x: 0.084729165, y: 0.16314882}
+  m_AnchorMax: {x: 0.26139584, y: 0.29077697}
+  m_AnchoredPosition: {x: -2.0999756, y: -0.75}
+  m_SizeDelta: {x: 2.899994, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224580786451463620
 RectTransform:
@@ -730,10 +798,10 @@ RectTransform:
   m_Father: {fileID: 224022339892243890}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.12633334, y: 0.5351488}
-  m_AnchorMax: {x: 0.12633334, y: 0.5351488}
-  m_AnchoredPosition: {x: 250.1, y: 82.750015}
-  m_SizeDelta: {x: 450.2, y: 165.5}
+  m_AnchorMin: {x: 0.060000002, y: 0.43437174}
+  m_AnchorMax: {x: 0.293, y: 0.5874053}
+  m_AnchoredPosition: {x: 1.0999756, y: -0.75}
+  m_SizeDelta: {x: 2.2000122, y: 1.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224683215328473046
 RectTransform:
@@ -750,7 +818,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.187, y: 0.091181524}
   m_AnchorMax: {x: 0.293, y: 0.2001161}
-  m_AnchoredPosition: {x: 16.52, y: 63}
+  m_AnchoredPosition: {x: -138.57993, y: -45.75}
   m_SizeDelta: {x: -0.8999939, y: -5.0999985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224722025036056110
@@ -784,10 +852,10 @@ RectTransform:
   m_Father: {fileID: 224022339892243890}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.7716042, y: 0.16314882}
-  m_AnchorMax: {x: 0.93720835, y: 0.263}
-  m_AnchoredPosition: {x: 0, y: -3}
-  m_SizeDelta: {x: -7.600006, y: 2.0999985}
+  m_AnchorMin: {x: 0.11272917, y: 0.053000003}
+  m_AnchorMax: {x: 0.22325003, y: 0.15666929}
+  m_AnchoredPosition: {x: 1318, y: 113.5}
+  m_SizeDelta: {x: 98.400024, y: -2.899994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224886425684779130
 RectTransform:
@@ -804,7 +872,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.73351204}
   m_AnchorMax: {x: 0.4464375, y: 1}
-  m_AnchoredPosition: {x: 3.000122, y: -2}
+  m_AnchoredPosition: {x: 3.0002441, y: -2}
   m_SizeDelta: {x: -5, y: -4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224998515598368604
@@ -820,8 +888,8 @@ RectTransform:
   m_Father: {fileID: 224022339892243890}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.12633334, y: 0.418}
-  m_AnchorMax: {x: 0.12633334, y: 0.418}
-  m_AnchoredPosition: {x: 250.09995, y: 55.04999}
-  m_SizeDelta: {x: 375.8, y: 110.1}
+  m_AnchorMin: {x: 0.079, y: 0.316}
+  m_AnchorMax: {x: 0.2722917, y: 0.418}
+  m_AnchoredPosition: {x: 0.49987793, y: 1.3000488}
+  m_SizeDelta: {x: 2.7999878, y: 0.099998474}
   m_Pivot: {x: 0.5, y: 0.5}

@@ -16,8 +16,10 @@ public class GameManager : MonoBehaviour
 	private static UIManager manager;
     private bool playing;
     private VideoPlayer videoGO;
+    private static AudioSource click;
+    private static AudioSource gameOverMusic;
 
-	private static bool mobile;
+    private static bool mobile;
 
     private void Awake()
     {
@@ -36,24 +38,17 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-
+        click = GetComponent<AudioSource>();
+        click.clip =  Resources.Load<AudioClip>("Music/SFX/click_button");
         SceneManager.sceneLoaded += OnSceneLoaded;
         playing = false;
 
         //manager = FindObjectOfType<UIManager>();
 
-<<<<<<< HEAD
-        //string device = mobileAndTabletCheck() ? "mobile" : "desktop";
-		string device = "desktop";
-
-        manager.setDevice(device);
-=======
 		string device = "desktop";
         //string device = mobileAndTabletCheck() ? "mobile" : "desktop";
         manager.setDevice(device);
-
->>>>>>> 022d81ad0d6e20d3183b3664b79c5fd4ef0ba29c
-        mobile = device.Equals("mobile");
+        mobile = device.Equals("desktop");
 
     }
 
@@ -111,9 +106,13 @@ public class GameManager : MonoBehaviour
 
             if (manager.scene.Equals("game_over"))
             {
+                gameOverMusic = GameObject.FindGameObjectWithTag("video").GetComponent<AudioSource>();
+                gameOverMusic.clip = Resources.Load<AudioClip>("Music/Music/GameOver_music");
+                gameOverMusic.Play();
                 videoGO = GameObject.FindGameObjectWithTag("video").GetComponent<VideoPlayer>();
                 videoGO.Play();
                 videoGO.loopPointReached += setGO;
+
             }
             else
             {
@@ -196,17 +195,31 @@ public class GameManager : MonoBehaviour
         //manager = FindObjectOfType<UIManager>();
         this.playing = manager.nextText();
 
-        if (playing)
+        if (manager.scene.Equals("Level5")) {
+
+            changeScene("main_menu");
+        }
+        else
         {
-            lockCursor();
-            FindObjectOfType<sceneManager>().initGame();
-            manager.setActiveJoysticks(false, "joysticks"); //si es ordenador se esconden, si es movil, se muestran
+
+            if (playing){
+
+                lockCursor();
+                FindObjectOfType<sceneManager>().initGame();
+                manager.setActiveJoysticks(false, "joysticks"); //si es ordenador se esconden, si es movil, se muestran
+
+            }
 
         }
+        
     }
 
     ////////////////////////////////////////////////////////////////////////////////
 
+    public void Click()
+    {
+        click.Play();
+    }
    
 	public int loadGame(){
 		int aux = PlayerPrefs.GetInt ("LVL");

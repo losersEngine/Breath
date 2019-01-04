@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour {
     private GameObject instance;
     private int actualLevel = 1;
     private string device;
-    private int[] numTextsByLevel = { 2, 1, 1, 1, 1 };
+    private int[] numTextsByLevel = { 2, 1, 1, 1, 2 };
 
 
     public void setDevice(string device)
@@ -249,6 +249,7 @@ public class UIManager : MonoBehaviour {
         string language = lang.Equals("Spanish") ? "es" : "en";
         GameObject buttons = Resources.Load<GameObject>("UI/Prefabs/game_over_" + language);
         Instantiate(buttons);
+
     }
     public void destroyMessageInteract()
     {
