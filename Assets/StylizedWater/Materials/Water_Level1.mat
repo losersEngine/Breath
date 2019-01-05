@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Water_Level1
+  m_Shader: {fileID: 4800000, guid: 1dcaa891fd50ac749a178732c0268a03, type: 3}
+  m_ShaderKeywords: _WORLDSPACETILIBG_ON
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Normals:
+        m_Texture: {fileID: 2800002, guid: 25be536d4cba2c14d9dcf7d4902ed079, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Shadermap:
+        m_Texture: {fileID: 2800000, guid: 25be536d4cba2c14d9dcf7d4902ed079, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Cutoff: 0.5
+    - _Depth: 15.8
+    - _Depthdarkness: 0.5
+    - _Fresnelexponent: 4
+    - _Glossiness: 1
+    - _RimSize: 4
+    - _Rimfalloff: 0.49
+    - _Rimtiling: 2
+    - _SurfaceHighlight: 0.106
+    - _SurfaceHightlighttiling: 0.25
+    - _Surfacehightlightsize: 0.129
+    - _Tiling: 0.52
+    - _Transparency: 0.779
+    - _Wavesspeed: 1.53
+    - _Worldspacetiling: 0
+    m_Colors:
+    - _FresnelColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _WaterColor: {r: 0, g: 0.7801051, b: 1, a: 1}

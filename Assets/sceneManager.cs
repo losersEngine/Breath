@@ -20,7 +20,7 @@ public class sceneManager : MonoBehaviour {
 	void Start () {
 		gM = GameObject.FindObjectOfType<GameManager> ();
 		endGame = false;
-		//initGame ();
+		initGame ();
 	}
 
     public void initGame()
@@ -79,7 +79,7 @@ public class sceneManager : MonoBehaviour {
 
 			Invoke ("stopAnimation", 5.5f);
 			//TODO:
-			gM.saveGame();
+			//gM.saveGame();
 			GameObject.FindObjectOfType<finalDoor>().openDoor();
 		}
 	}
