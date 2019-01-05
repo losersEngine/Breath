@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 95969693800780338}
   - component: {fileID: 23847294527321196}
   - component: {fileID: 33809726076512764}
-  - component: {fileID: 114105729575562640}
   m_Layer: 0
   m_Name: tree (2)
   m_TagString: Untagged
@@ -3855,26 +3854,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114105729575562640
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1027112230905546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88ea961b7f0a34b9a80f9f8437e0e9c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lodMeshes:
-  - {fileID: 4300000, guid: 8e133e9e7e294614eb657e0d33cfc9b2, type: 2}
-  - {fileID: 4300000, guid: 68ff3f30c37bba94c8e678ff29d152d4, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  lodGameObjects: []
-  lodScreenSizes:
-  - 0.6
-  - 0.3
-  - 0.15
-  deactivateAtDistance: 0
-  customCamera: {fileID: 0}
