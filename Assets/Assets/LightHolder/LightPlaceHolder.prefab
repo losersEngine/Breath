@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4269564948901992}
-  - component: {fileID: 135444751098189888}
   - component: {fileID: 114732081202270016}
   - component: {fileID: 82582619651155632}
+  - component: {fileID: 136852707390583696}
   m_Layer: 0
   m_Name: LightPlaceHolder
   m_TagString: LightPlaceHolderRight
@@ -67,15 +67,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1267893383965520}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.467392, y: -4.862932, z: -4.539978}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalRotation: {x: 0, y: 0.976296, z: -0, w: -0.21643949}
+  m_LocalPosition: {x: -7.3530273, y: 5.4728107, z: 15.102058}
+  m_LocalScale: {x: 1.5, y: 1, z: 1.5}
   m_Children:
   - {fileID: 4674584332189950}
   - {fileID: 4360389716885988}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 205, z: 0}
 --- !u!4 &4360389716885988
 Transform:
   m_ObjectHideFlags: 1
@@ -252,8 +252,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1685724629091022}
   placed: {fileID: 0}
---- !u!135 &135444751098189888
-SphereCollider:
+--- !u!136 &136852707390583696
+CapsuleCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -261,6 +261,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Radius: 0.7
+  m_Height: 5.95
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
