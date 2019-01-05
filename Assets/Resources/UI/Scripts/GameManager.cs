@@ -45,10 +45,10 @@ public class GameManager : MonoBehaviour
 
         //manager = FindObjectOfType<UIManager>();
 
-		string device = "desktop";
-        //string device = mobileAndTabletCheck() ? "mobile" : "desktop";
+		//string device = "desktop";
+        string device = mobileAndTabletCheck() ? "mobile" : "desktop";
         manager.setDevice(device);
-        mobile = device.Equals("desktop");
+        mobile = device.Equals("mobile");
 
     }
 
@@ -110,6 +110,7 @@ public class GameManager : MonoBehaviour
                 gameOverMusic.clip = Resources.Load<AudioClip>("Music/Music/GameOver_music");
                 gameOverMusic.Play();
                 videoGO = GameObject.FindGameObjectWithTag("video").GetComponent<VideoPlayer>();
+                videoGO.url = System.IO.Path.Combine(Application.streamingAssetsPath, "game_over.mp4");
                 videoGO.Play();
                 videoGO.loopPointReached += setGO;
 
