@@ -23,6 +23,7 @@ public class Pointer : MonoBehaviour {
 	}
 
 	public void OnTriggerExit(){
+		
 		pointing = null;
 	}
 

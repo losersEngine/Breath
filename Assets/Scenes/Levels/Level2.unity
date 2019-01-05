@@ -12278,6 +12278,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4371718553027978, guid: 4c5c4b85d3a6e8347a81a1a90dfbcadd,
     type: 2}
   m_PrefabInternal: {fileID: 1523538921}
+--- !u!1001 &1207611479
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4616534078959802, guid: c9e8ef9f7b9b22c4e9f1ca59e19efcde, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 201.42935
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616534078959802, guid: c9e8ef9f7b9b22c4e9f1ca59e19efcde, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 15.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616534078959802, guid: c9e8ef9f7b9b22c4e9f1ca59e19efcde, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 149.0198
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616534078959802, guid: c9e8ef9f7b9b22c4e9f1ca59e19efcde, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616534078959802, guid: c9e8ef9f7b9b22c4e9f1ca59e19efcde, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.85223967
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616534078959802, guid: c9e8ef9f7b9b22c4e9f1ca59e19efcde, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616534078959802, guid: c9e8ef9f7b9b22c4e9f1ca59e19efcde, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.52315164
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616534078959802, guid: c9e8ef9f7b9b22c4e9f1ca59e19efcde, type: 2}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616534078959802, guid: c9e8ef9f7b9b22c4e9f1ca59e19efcde, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 116.912
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c9e8ef9f7b9b22c4e9f1ca59e19efcde, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1224597059
 Prefab:
   m_ObjectHideFlags: 0
