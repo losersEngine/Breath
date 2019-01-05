@@ -52,8 +52,7 @@ Shader "StylizedWater/Desktop (DX11 Tesselation)" {
             #pragma hull hull
             #pragma domain domain
             #pragma vertex tessvert
-            #pragma fragment frag
-            #define UNITY_PASS_FORWARDBASE
+            #pragma fragment frag           
             #include "UnityCG.cginc"
             #include "Tessellation.cginc"
             #include "UnityPBSLighting.cginc"
