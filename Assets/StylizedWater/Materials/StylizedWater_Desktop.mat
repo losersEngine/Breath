@@ -45,11 +45,11 @@ Material:
     - _Surfacehightlightsize: 0
     - _Tesselation: 0.1
     - _Tiling: 0.502
-    - _Transparency: 0
+    - _Transparency: 0.314
     - _Wavesspeed: 0.68
     - _Wavesstrength: 0.034
     - _Worldspacetiling: 0
     m_Colors:
     - _FresnelColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     - _RimColor: {r: 0.044811323, g: 0.06713619, b: 0.1792453, a: 0.941}
-    - _WaterColor: {r: 0, g: 0.503546, b: 1, a: 1}
+    - _WaterColor: {r: 0.3216002, g: 0.62898195, b: 0.9339623, a: 1}
