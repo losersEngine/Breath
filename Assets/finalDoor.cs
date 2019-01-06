@@ -26,9 +26,13 @@ public class finalDoor : MonoBehaviour {
 			sfx.clip = Resources.Load<AudioClip> ("Music/SFX/door_close");
 			sfx.Play ();
 			anim.SetBool ("doorUp", false);
-		}
-	}
+            FindObjectOfType<GameManager>().PlayAmbulance();
 
+        }
+
+    }
+
+    
 	public void openDoor(){
 		sfx.clip = Resources.Load<AudioClip> ("Music/SFX/door_open");
 		sfx.Play ();

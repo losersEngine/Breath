@@ -12,7 +12,7 @@ Material:
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -20,6 +20,10 @@ Material:
     m_TexEnvs:
     - _Normals:
         m_Texture: {fileID: 2800002, guid: 25be536d4cba2c14d9dcf7d4902ed079, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Reflection:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Shadermap:
@@ -32,15 +36,18 @@ Material:
     - _Depthdarkness: 0.274
     - _Fresnelexponent: 4
     - _Glossiness: 1
+    - _RefractionAmount: 0.1
     - _RimSize: 0.41
     - _Rimfalloff: 0.52
     - _Rimtiling: 2
     - _SurfaceHighlight: 0.451
     - _SurfaceHightlighttiling: 0.25
     - _Surfacehightlightsize: 0.141
+    - _Tesselation: 0.1
     - _Tiling: 0.523
     - _Transparency: 0.886
     - _Wavesspeed: 1.28
+    - _Wavesstrength: 0.66
     - _Worldspacetiling: 0
     m_Colors:
     - _FresnelColor: {r: 1, g: 1, b: 1, a: 0.5019608}

@@ -17,7 +17,10 @@ public class GameManager : MonoBehaviour
     private bool playing;
     private VideoPlayer videoGO;
     private static AudioSource click;
-    private static AudioSource gameOverMusic;
+    private static AudioSource music;
+    private static AudioClip waterUp;
+    private static AudioClip ambulance;
+
 
     private static bool mobile;
 
@@ -26,6 +29,7 @@ public class GameManager : MonoBehaviour
         if (!FindObjectOfType<UIManager>())
         {
             DontDestroyOnLoad(this);
+            music = GetComponent<AudioSource>();
             manager = Instantiate(uiManager).GetComponent<UIManager>();
             DontDestroyOnLoad(manager);
         }
@@ -36,8 +40,28 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void playFinalWater()
+    {
+        GameObject.Find("Ambient").GetComponent<AudioSource>().Stop();
+        AudioSource tension = GameObject.Find("tension").GetComponent<AudioSource>();
+        tension.clip = waterUp;
+        tension.Play();
+    }
+
+    public void PlayAmbulance()
+    {
+
+        AudioSource amb = GameObject.Find("Ambulance").GetComponent<AudioSource>();
+        amb.clip = ambulance;
+        amb.Play();
+    }
+
     void Start()
     {
+
+        waterUp = Resources.Load<AudioClip>("Music/Music/Music_water_up");
+        ambulance = Resources.Load<AudioClip>("Music/SFX/SFX_ambulancia");
+
         click = GetComponent<AudioSource>();
         click.clip =  Resources.Load<AudioClip>("Music/SFX/click_button");
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -45,7 +69,8 @@ public class GameManager : MonoBehaviour
 
         //manager = FindObjectOfType<UIManager>();
 
-		//string device = "desktop";
+
+        //string device = "desktop";
         string device = mobileAndTabletCheck() ? "mobile" : "desktop";
         manager.setDevice(device);
         mobile = device.Equals("mobile");
@@ -92,6 +117,13 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+
+        if (music && music.isPlaying)
+        {
+            music.Stop();
+            //music.loop = !music.loop?true;
+        }
+
         manager.scene = scene.name;
 
 
@@ -106,9 +138,9 @@ public class GameManager : MonoBehaviour
 
             if (manager.scene.Equals("game_over"))
             {
-                gameOverMusic = GameObject.FindGameObjectWithTag("video").GetComponent<AudioSource>();
-                gameOverMusic.clip = Resources.Load<AudioClip>("Music/Music/GameOver_music");
-                gameOverMusic.Play();
+                music = GameObject.FindGameObjectWithTag("video").GetComponent<AudioSource>();
+                music.clip = Resources.Load<AudioClip>("Music/Music/GameOver_music");
+                music.Play();
                 videoGO = GameObject.FindGameObjectWithTag("video").GetComponent<VideoPlayer>();
                 videoGO.url = System.IO.Path.Combine(Application.streamingAssetsPath, "game_over.mp4");
                 videoGO.Play();
