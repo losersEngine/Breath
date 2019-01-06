@@ -22,8 +22,8 @@ public class MovementController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		//mobile = FindObjectOfType<UIManager> ().getDevice ().Equals ("mobile");
-		mobile = false;
+		mobile = FindObjectOfType<UIManager> ().getDevice ().Equals ("mobile");
+		//mobile = false;
 
 		rigid = this.GetComponent<Rigidbody>();
 		anim = this.GetComponent<Animator> ();

@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour {
     public string scene;
     private GameObject instance;
     private int actualLevel = 1;
-    private string device;
+	private string device;
     private int[] numTextsByLevel = { 2, 1, 1, 1, 2 };
 
 
@@ -107,11 +107,11 @@ public class UIManager : MonoBehaviour {
 
             if (i < actualLevel)
             {
-                loadSprite(buttonImage, "UI/Buttons", niveles[i].name + "enable");
+                loadSprite(buttonImage, "UI/Buttons", niveles[i].name + "_enable");
             }
             else
             {
-                loadSprite(buttonImage, "UI/Buttons", niveles[i].name + "disable");
+                loadSprite(buttonImage, "UI/Buttons", niveles[i].name + "_disable");
                 button.GetComponent<Button>().interactable = false;
 
             }

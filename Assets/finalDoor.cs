@@ -23,14 +23,14 @@ public class finalDoor : MonoBehaviour {
 
 		if (other.tag.Equals("Player") && anim.GetBool("doorUp"))
 		{
-			sfx.clip = Resources.Load<AudioClip> ("Music/SFX/door_open");
+			sfx.clip = Resources.Load<AudioClip> ("Music/SFX/door_close");
 			sfx.Play ();
 			anim.SetBool ("doorUp", false);
 		}
 	}
 
 	public void openDoor(){
-		sfx.clip = Resources.Load<AudioClip> ("Music/SFX/door_close");
+		sfx.clip = Resources.Load<AudioClip> ("Music/SFX/door_open");
 		sfx.Play ();
 		anim.SetBool ("doorUp", true);
 	}

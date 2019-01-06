@@ -25,17 +25,7 @@ public class SceneChanger : MonoBehaviour {
 	{
 		if (other.tag.Equals("Player"))
         {
-            if (uiM.scene.Equals("Level4"))
-            {
-                uiM.scene = "Leevl5";
-                uiM.instanceText();
-            }
-            else
-            {
-                gM.changeScene(nextScene);
-
-            }
-
+        	gM.changeScene(nextScene);
         }
     }
 }

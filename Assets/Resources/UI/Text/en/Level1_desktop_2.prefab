@@ -61,7 +61,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Use W, A, S, D to move,\nthe mouse for moving the\r camera \nand the button
-    E to interact when it is possible."
+    E to interact when it is possible.\nPress P to pause."
 --- !u!222 &222508938409884762
 CanvasRenderer:
   m_ObjectHideFlags: 1

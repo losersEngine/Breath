@@ -16,7 +16,7 @@ public class waterRise : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (collided) {
-			float trans = 0.025f * Time.deltaTime;
+			float trans = 0.01f * Time.deltaTime;
 			this.transform.Translate (new Vector3(0.0f, trans, 0.0f));
 		}
 	}

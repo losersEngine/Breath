@@ -45,8 +45,8 @@ public class GameManager : MonoBehaviour
 
         //manager = FindObjectOfType<UIManager>();
 
-		string device = "desktop";
-        //string device = mobileAndTabletCheck() ? "mobile" : "desktop";
+		//string device = "desktop";
+        string device = mobileAndTabletCheck() ? "mobile" : "desktop";
         manager.setDevice(device);
         mobile = device.Equals("mobile");
 
@@ -196,7 +196,7 @@ public class GameManager : MonoBehaviour
         //manager = FindObjectOfType<UIManager>();
         this.playing = manager.nextText();
 
-        if (manager.scene.Equals("Level5")) {
+		if (manager.scene.Equals("Level5") && playing) {
 
             changeScene("main_menu");
         }
@@ -230,7 +230,7 @@ public class GameManager : MonoBehaviour
 
 	public void saveGame() {
 
-        int lvl = getActualLevel();
+        int lvl = getActualLevel() + 1;
 		int lvlSaved = this.loadGame ();
 
 		if (lvl > lvlSaved)
