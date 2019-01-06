@@ -324,8 +324,8 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 114754686167707648, guid: 3c200f27a4cc2864e8c4180a830ab01b,
           type: 2}
-        m_MethodName: changeScene
-        m_Mode: 5
+        m_MethodName: exitGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
