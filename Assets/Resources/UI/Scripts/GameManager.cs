@@ -50,11 +50,12 @@ public class GameManager : MonoBehaviour
 
     public void PlayAmbulance()
     {
-
-        AudioSource amb = GameObject.Find("Ambulance").GetComponent<AudioSource>();
-        amb.clip = ambulance;
-        amb.Play();
-    }
+		if (getActualLevel() == 4){
+	        AudioSource amb = GameObject.Find("Ambulance").GetComponent<AudioSource>();
+	        amb.clip = ambulance;
+	        amb.Play();
+		}
+	}
 
     void Start()
     {
