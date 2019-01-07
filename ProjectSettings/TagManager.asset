@@ -16,6 +16,7 @@ TagManager:
   - text
   - sceneManager
   - video
+  - loading
   layers:
   - Default
   - TransparentFX

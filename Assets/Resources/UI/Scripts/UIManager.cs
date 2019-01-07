@@ -37,6 +37,7 @@ public class UIManager : MonoBehaviour {
     {
 
         scene = "main_menu"; // SE CAMBIA CADA VEZ QUE SE PASA A OTRA PANTALLA
+
         InstantiateLanguage();
 
     }
@@ -45,6 +46,7 @@ public class UIManager : MonoBehaviour {
     {
         Destroy(GameObject.FindGameObjectWithTag("prefab"));
     }
+
 
     public void setLanguage(string v)
     {

@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     private static extern bool mobileAndTabletCheck();
 
     public GameObject uiManager;
+    public GameObject lManager;
+    private static LoadManager loadManager;
 	private static UIManager manager;
     private bool playing;
     private VideoPlayer videoGO;
@@ -20,7 +22,8 @@ public class GameManager : MonoBehaviour
     private static AudioSource music;
     private static AudioClip waterUp;
     private static AudioClip ambulance;
-
+    private string sceneToChange;
+    AsyncOperation async;
 
     private static bool mobile;
 
@@ -60,19 +63,22 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 
+        loadManager = Instantiate(lManager).GetComponent<LoadManager>();
+
         waterUp = Resources.Load<AudioClip>("Music/Music/Music_water_up");
         ambulance = Resources.Load<AudioClip>("Music/SFX/SFX_ambulancia");
 
         click = GetComponent<AudioSource>();
         click.clip =  Resources.Load<AudioClip>("Music/SFX/click_button");
+
         SceneManager.sceneLoaded += OnSceneLoaded;
         playing = false;
 
         //manager = FindObjectOfType<UIManager>();
 
 
-        string device = "desktop";
-        //string device = mobileAndTabletCheck() ? "mobile" : "desktop";
+        //string device = "desktop";
+        string device = mobileAndTabletCheck() ? "mobile" : "desktop";
         manager.setDevice(device);
         mobile = device.Equals("mobile");
 
@@ -125,6 +131,7 @@ public class GameManager : MonoBehaviour
             //music.loop = !music.loop?true;
         }
 
+
         manager.scene = scene.name;
 
 
@@ -152,7 +159,11 @@ public class GameManager : MonoBehaviour
             {
                 manager.InstantiateLanguage();
             }
+
         }
+
+        loadManager = Instantiate(lManager).GetComponent<LoadManager>();
+
 
     }
 
@@ -318,10 +329,16 @@ public class GameManager : MonoBehaviour
     public void changeScene(string newScene)
     {
 
-        unlockCursor();
-        //manager = FindObjectOfType<UIManager>();
+        sceneToChange = newScene;
+        loadManager.showLoadScreen();
         manager.SceneChanged();
-        SceneManager.LoadScene(newScene);
+
+        loadManager.startLoading(newScene);
+        unlockCursor();
+
+        //manager = FindObjectOfType<UIManager>();
+        //StartCoroutine(loadingScreen());
+        //SceneManager.LoadScene(newScene);
 
     }
 
