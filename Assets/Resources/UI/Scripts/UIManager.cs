@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -100,6 +101,8 @@ public class UIManager : MonoBehaviour {
     public void loadLevels(int actualLevel) {
 
         GameObject[] niveles = GameObject.FindGameObjectsWithTag("level");
+		niveles = niveles.OrderBy (a => a.name).ToArray ();
+
         for(int i= 0; i < niveles.Length; i++)
         {
             GameObject button = niveles[i];

@@ -16,7 +16,7 @@ public class waterRise : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (collided) {
-			float trans = 0.01f * Time.deltaTime;
+			float trans = 0.013f * Time.deltaTime;
 			this.transform.Translate (new Vector3(0.0f, trans, 0.0f));
 		}
 	}
@@ -28,6 +28,7 @@ public class waterRise : MonoBehaviour {
 	public void OnTriggerEnter(Collider other){
 		if (other.tag.Equals ("Player") && !collided) {
 			collided = true;
+            gM.playFinalWater();
 			Invoke ("dead", 180.0f);
 		}
 	}

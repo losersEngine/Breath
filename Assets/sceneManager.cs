@@ -71,8 +71,6 @@ public class sceneManager : MonoBehaviour {
 		}
 
 		if (correct) {
-			Debug.Log ("Ganaste");
-
 			playerAct.setFixedAnim(true);
 			endGame = true;
 			sfx.Play ();
