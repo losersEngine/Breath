@@ -23,7 +23,6 @@ public class initDoor : MonoBehaviour {
 
 		if (other.tag.Equals("Player"))
 		{
-			sfx.clip = Resources.Load<AudioClip> ("Music/SFX/door_open");
 			sfx.Play ();
 			anim.SetTrigger ("close");
 		}

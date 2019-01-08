@@ -7438,6 +7438,8 @@ MonoBehaviour:
   - PlayerLight
   podiumsLevel:
   - {fileID: 122383942}
+  playerPrefab: {fileID: 1223799588450250, guid: 5050cb4e75b304440acc02ed9af7e195,
+    type: 2}
   startPlayer: {fileID: 1118647802}
   finalExit: {fileID: 1036923792}
 --- !u!82 &794121641

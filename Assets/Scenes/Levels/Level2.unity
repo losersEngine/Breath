@@ -1332,6 +1332,8 @@ MonoBehaviour:
   - {fileID: 1851052215}
   - {fileID: 712772162}
   - {fileID: 2081712380}
+  playerPrefab: {fileID: 1223799588450250, guid: 5050cb4e75b304440acc02ed9af7e195,
+    type: 2}
   startPlayer: {fileID: 183284486}
   finalExit: {fileID: 1849700037}
 --- !u!4 &81722027
