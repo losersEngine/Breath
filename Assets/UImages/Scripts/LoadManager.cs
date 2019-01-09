@@ -21,6 +21,8 @@ public class LoadManager : MonoBehaviour {
 	
     public void showLoadScreen()
     {
+
+        Debug.Log("holi");
         screen.SetActive(true);
 
     }

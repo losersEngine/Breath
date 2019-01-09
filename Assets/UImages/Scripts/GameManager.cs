@@ -62,16 +62,15 @@ public class GameManager : MonoBehaviour
         loadManager = Instantiate(lManager).GetComponent<LoadManager>();
 
         click = GetComponent<AudioSource>();
-        click.clip =  Resources.Load<AudioClip>("Music/SFX/click_button");
 
         SceneManager.sceneLoaded += OnSceneLoaded;
         playing = false;
 
-        //manager = FindObjectOfType<UIManager>();
+        manager = FindObjectOfType<UIManager>();
 
 
-        //string device = "desktop";
-        string device = mobileAndTabletCheck() ? "mobile" : "desktop";
+        string device = "desktop";
+        //string device = mobileAndTabletCheck() ? "mobile" : "desktop";
         manager.setDevice(device);
         mobile = device.Equals("mobile");
 
@@ -140,7 +139,6 @@ public class GameManager : MonoBehaviour
             if (manager.scene.Equals("game_over"))
             {
                 music = GameObject.FindGameObjectWithTag("video").GetComponent<AudioSource>();
-                music.clip = Resources.Load<AudioClip>("Music/Music/GameOver_music");
                 music.Play();
                 videoGO = GameObject.FindGameObjectWithTag("video").GetComponent<VideoPlayer>();
                 videoGO.url = System.IO.Path.Combine(Application.streamingAssetsPath, "game_over.mp4");
@@ -329,12 +327,15 @@ public class GameManager : MonoBehaviour
         loadManager.startLoading(newScene);
         unlockCursor();
 
-        //manager = FindObjectOfType<UIManager>();
-        //StartCoroutine(loadingScreen());
-        //SceneManager.LoadScene(newScene);
-
     }
 
+    public void resetGame()
+    {
+
+        PlayerPrefs.DeleteKey("LVL");
+        saveGame();
+
+    }
     // Update is called once per frame
     void Update()
     {
