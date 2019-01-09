@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour {
     private GameObject instance;
     private int actualLevel = 1;
 	private string device;
-    private int[] numTextsByLevel = { 2, 1, 1, 1, 2 };
+    private int[] numTextsByLevel = { 2, 1, 1, 1, 2 }; //numero de textos que aparecen al principio de cada nivel
 
 
     public void setDevice(string device)

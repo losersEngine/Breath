@@ -12,7 +12,7 @@ public class LoadManager : MonoBehaviour {
     private GameObject screen;
 
     // Use this for initialization
-    void Start () {
+    void Start () { //al principio ocultamos la pantalla, pero guardamos su referencia
 
         manager = FindObjectOfType<UIManager>();
         screen = GameObject.FindGameObjectWithTag("loading");
@@ -22,7 +22,6 @@ public class LoadManager : MonoBehaviour {
     public void showLoadScreen()
     {
 
-        Debug.Log("holi");
         screen.SetActive(true);
 
     }

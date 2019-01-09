@@ -41,6 +41,29 @@ public class GameManager : MonoBehaviour
 
     }
 
+
+    void Start()
+    {
+
+        loadManager = Instantiate(lManager).GetComponent<LoadManager>();
+
+        click = GetComponent<AudioSource>();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        playing = false;
+
+        manager = FindObjectOfType<UIManager>();
+
+
+        //string device = "desktop";
+        string device = mobileAndTabletCheck() ? "mobile" : "desktop";
+        manager.setDevice(device);
+        mobile = device.Equals("mobile");
+
+    }
+
+    //////////////////////////////////////////// SONIDOS /////////////////////////////////////////////////////////////////////////////////
+
     public void playFinalWater()
     {
         GameObject.Find("Ambient").GetComponent<AudioSource>().Stop();
@@ -56,31 +79,14 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-    void Start()
+
+    public void Click()
     {
-
-        loadManager = Instantiate(lManager).GetComponent<LoadManager>();
-
-        click = GetComponent<AudioSource>();
-
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        playing = false;
-
-        manager = FindObjectOfType<UIManager>();
-
-
-        string device = "desktop";
-        //string device = mobileAndTabletCheck() ? "mobile" : "desktop";
-        manager.setDevice(device);
-        mobile = device.Equals("mobile");
-
+        click.Play();
     }
 
-    public bool isPlaying()
-    {
+    //////////////////////////////////////////// GESTION DE ESCENAS /////////////////////////////////////////////////////////////////////////////////
 
-        return playing;
-    }
 
     private int getActualLevel()
     {
@@ -91,10 +97,20 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void loadLevel() //selector de niveles (muestra desbloqueados los niveles hasta el actual)
+    {
+        int level = loadGame();
+        manager.loadLevels(level);
+    }
+
+    public void exitGame()
+    {
+        Application.OpenURL("https://losersengine.github.io/losersEngineWeb/");
+    }
+
     public void changeUIScene(string scene)
     {
 
-        //manager = FindObjectOfType<UIManager>();
         manager.DestroyWithTag("prefab");
 
         manager.scene = scene;
@@ -114,13 +130,26 @@ public class GameManager : MonoBehaviour
 
     }
 
+
+    public void changeScene(string newScene)
+    {
+
+        sceneToChange = newScene;
+        loadManager.showLoadScreen();
+        manager.SceneChanged();
+
+        loadManager.startLoading(newScene);
+        unlockCursor();
+
+    }
+
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
 
         if (music && music.isPlaying)
         {
             music.Stop();
-            //music.loop = !music.loop?true;
         }
 
 
@@ -138,8 +167,7 @@ public class GameManager : MonoBehaviour
 
             if (manager.scene.Equals("game_over"))
             {
-                music = GameObject.FindGameObjectWithTag("video").GetComponent<AudioSource>();
-                music.Play();
+
                 videoGO = GameObject.FindGameObjectWithTag("video").GetComponent<VideoPlayer>();
                 videoGO.url = System.IO.Path.Combine(Application.streamingAssetsPath, "game_over.mp4");
                 videoGO.Play();
@@ -207,7 +235,6 @@ public class GameManager : MonoBehaviour
     public void SetLanguage()
     {
 
-        //manager = FindObjectOfType<UIManager>();
         Image l = GameObject.Find("languageOp").GetComponent<Image>();
         string actualLanguage = manager.getLanguage();
 
@@ -228,7 +255,7 @@ public class GameManager : MonoBehaviour
 
     public void nextText()
     {
-        //manager = FindObjectOfType<UIManager>();
+
         this.playing = manager.nextText();
 
 		if (manager.scene.Equals("Level5") && playing) {
@@ -249,15 +276,16 @@ public class GameManager : MonoBehaviour
         }
         
     }
-
-    ////////////////////////////////////////////////////////////////////////////////
-
-    public void Click()
+    public bool isPlaying()
     {
-        click.Play();
+
+        return playing;
     }
-   
-	public int loadGame(){
+
+    /////////////////////////////// GAME STATE /////////////////////////////////////////////////
+
+
+    public int loadGame(){
 		int aux = PlayerPrefs.GetInt ("LVL");
 		int lvl = (aux != null) ? aux : -1;
 		return lvl;
@@ -272,13 +300,19 @@ public class GameManager : MonoBehaviour
 			PlayerPrefs.SetInt ("LVL", lvl);
     }
 
+    public void resetGame()
+    {
+
+        PlayerPrefs.DeleteKey("LVL");
+        saveGame();
+
+    }
     //////////////////////////// PAUSE MENU ////////////////////////////////////////
 
     public void setPauseMenu()
     {
 
         unlockCursor();
-        //manager = FindObjectOfType<UIManager>();
         FindObjectOfType<sceneManager>().setPauseMenu();
         manager.setPauseMenu();
 
@@ -287,7 +321,6 @@ public class GameManager : MonoBehaviour
     public void goToSettings()
     {
 
-        //manager = FindObjectOfType<UIManager>();
         manager.goToSettings();
         setSettingsValues();
 
@@ -297,45 +330,36 @@ public class GameManager : MonoBehaviour
     {
 
         lockCursor();
-        //manager = FindObjectOfType<UIManager>();
         manager.goToGame();
         FindObjectOfType<sceneManager>().setPauseMenu();
 
     }
-		
+
     ////////////////////////////////////////////////////////////////////////////////////
 
-    public void loadLevel()
+    /////////////////////////////////// CURSOR /////////////////////////////////////////////////
+
+    public void lockCursor()
     {
-        int level = loadGame();
-        //manager = FindObjectOfType<UIManager>();
-        manager.loadLevels(level);
+        if (!mobile)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
-    public void exitGame()
+    public void unlockCursor()
     {
-        Application.OpenURL("https://losersengine.github.io/losersEngineWeb/");
+        if (!mobile)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
-    public void changeScene(string newScene)
-    {
+    ////////////////////////////////////////////////////////////////////////////////////
 
-        sceneToChange = newScene;
-        loadManager.showLoadScreen();
-        manager.SceneChanged();
 
-        loadManager.startLoading(newScene);
-        unlockCursor();
-
-    }
-
-    public void resetGame()
-    {
-
-        PlayerPrefs.DeleteKey("LVL");
-        saveGame();
-
-    }
     // Update is called once per frame
     void Update()
     {
@@ -350,18 +374,4 @@ public class GameManager : MonoBehaviour
 
     ///////////////////////////////////////////////////////////////////////////////////////
 
-
-	public void lockCursor(){
-		if (!mobile) {
-			Cursor.lockState = CursorLockMode.Locked;
-			Cursor.visible = false;
-		}
-	}
-
-	public void unlockCursor(){
-		if (!mobile) {
-			Cursor.lockState = CursorLockMode.None;
-			Cursor.visible = true;
-		}
-	}
 }
