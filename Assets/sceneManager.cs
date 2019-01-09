@@ -7,6 +7,8 @@ public class sceneManager : MonoBehaviour {
 	public string[] objectsPlaces;
 	public PodiumController[] podiumsLevel;
 
+	public GameObject playerPrefab;
+
 	public GameObject startPlayer;
 	public GameObject finalExit;
 
@@ -25,7 +27,7 @@ public class sceneManager : MonoBehaviour {
 
     public void initGame()
     {
-		GameObject aux = Instantiate(Resources.Load<GameObject>("FPSControllerKevin/Prefabs/Player"));
+		GameObject aux = Instantiate(playerPrefab);
         aux.transform.SetPositionAndRotation(startPlayer.transform.position, startPlayer.transform.rotation);
 
 		sfx = this.GetComponent<AudioSource> ();

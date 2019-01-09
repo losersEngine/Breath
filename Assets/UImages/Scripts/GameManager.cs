@@ -1,0 +1,377 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.Video;
+
+public class GameManager : MonoBehaviour
+{
+
+    [DllImport("__Internal")]
+    private static extern bool mobileAndTabletCheck();
+
+    public GameObject uiManager;
+    public GameObject lManager;
+    private static LoadManager loadManager;
+	private static UIManager manager;
+    private bool playing;
+    private VideoPlayer videoGO;
+    private static AudioSource click;
+    private static AudioSource music;
+    private string sceneToChange;
+    AsyncOperation async;
+
+    private static bool mobile;
+
+    private void Awake()
+    {
+        if (!FindObjectOfType<UIManager>())
+        {
+            DontDestroyOnLoad(this);
+            music = GetComponent<AudioSource>();
+            manager = Instantiate(uiManager).GetComponent<UIManager>();
+            DontDestroyOnLoad(manager);
+        }
+        else
+        {
+            Destroy(this);
+        }
+
+    }
+
+
+    void Start()
+    {
+
+        loadManager = Instantiate(lManager).GetComponent<LoadManager>();
+
+        click = GetComponent<AudioSource>();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        playing = false;
+
+        manager = FindObjectOfType<UIManager>();
+
+
+        //string device = "desktop";
+        string device = mobileAndTabletCheck() ? "mobile" : "desktop";
+        manager.setDevice(device);
+        mobile = device.Equals("mobile");
+
+    }
+
+    //////////////////////////////////////////// SONIDOS /////////////////////////////////////////////////////////////////////////////////
+
+    public void playFinalWater()
+    {
+        GameObject.Find("Ambient").GetComponent<AudioSource>().Stop();
+        AudioSource tension = GameObject.Find("tension").GetComponent<AudioSource>();
+        tension.Play();
+    }
+
+    public void PlayAmbulance()
+    {
+		if (getActualLevel() == 4){
+	        AudioSource amb = GameObject.Find("Ambulance").GetComponent<AudioSource>();
+	        amb.Play();
+		}
+	}
+
+
+    public void Click()
+    {
+        click.Play();
+    }
+
+    //////////////////////////////////////////// GESTION DE ESCENAS /////////////////////////////////////////////////////////////////////////////////
+
+
+    private int getActualLevel()
+    {
+        char[] arrayNameLevel = manager.scene.ToCharArray();
+        int numberLevel = (int)char.GetNumericValue(arrayNameLevel[arrayNameLevel.Length - 1]);
+
+        return numberLevel;
+
+    }
+
+    public void loadLevel() //selector de niveles (muestra desbloqueados los niveles hasta el actual)
+    {
+        int level = loadGame();
+        manager.loadLevels(level);
+    }
+
+    public void exitGame()
+    {
+        Application.OpenURL("https://losersengine.github.io/losersEngineWeb/");
+    }
+
+    public void changeUIScene(string scene)
+    {
+
+        manager.DestroyWithTag("prefab");
+
+        manager.scene = scene;
+        manager.InstantiateLanguage();
+
+        if (manager.scene.Equals("settings"))
+        {
+            setSettingsValues();
+            GameObject.Find("back").GetComponent<Button>().onClick.AddListener(() => {
+                changeUIScene("main_menu");
+            });
+        }
+        else if (manager.scene.Equals("level_selector"))
+        {
+            loadLevel();
+        }
+
+    }
+
+
+    public void changeScene(string newScene)
+    {
+
+        sceneToChange = newScene;
+        loadManager.showLoadScreen();
+        manager.SceneChanged();
+
+        loadManager.startLoading(newScene);
+        unlockCursor();
+
+    }
+
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+
+        if (music && music.isPlaying)
+        {
+            music.Stop();
+        }
+
+
+        manager.scene = scene.name;
+
+
+        if (manager.scene.Contains("Level"))
+        {
+            manager.setLevel(getActualLevel());
+            manager.instanceText();
+        }
+        else
+        {
+            unlockCursor();
+
+            if (manager.scene.Equals("game_over"))
+            {
+
+                videoGO = GameObject.FindGameObjectWithTag("video").GetComponent<VideoPlayer>();
+                videoGO.url = System.IO.Path.Combine(Application.streamingAssetsPath, "game_over.mp4");
+                videoGO.Play();
+                videoGO.loopPointReached += setGO;
+
+            }
+            else
+            {
+                manager.InstantiateLanguage();
+            }
+
+        }
+
+        loadManager = Instantiate(lManager).GetComponent<LoadManager>();
+
+
+    }
+
+    private void setGO(VideoPlayer vp)
+    {
+
+        manager.instantiateGO();
+            
+    }
+
+    //////////////////////////////////////////// MENU CONFIGURACION /////////////////////////////////////////////////////////////////////////////////
+
+    private void setSettingsValues()
+    {
+
+        //antialiasing
+        Slider antialiasing = GameObject.Find("sliderAntialiasing").GetComponent<Slider>();
+        antialiasing.value = QualitySettings.antiAliasing == 0 ? 0 : Mathf.Log(QualitySettings.antiAliasing, 2);
+
+        //volume
+        Slider volume = GameObject.Find("sliderVolume").GetComponent<Slider>();
+        volume.value = AudioListener.volume;
+
+    }
+
+    public void SetAntialiasing(GameObject obj)
+    {
+        Slider slider = obj.GetComponent<Slider>();
+
+        if (slider.value == 0)
+        {
+
+            QualitySettings.antiAliasing = 0;
+
+        }
+        else
+        {
+
+            QualitySettings.antiAliasing = (int)Mathf.Pow(2, slider.value);
+
+        }
+    }
+
+    public void SetVolume(GameObject obj)
+    {
+        Slider slider = obj.GetComponent<Slider>();
+        AudioListener.volume = slider.value;
+    }
+
+    public void SetLanguage()
+    {
+
+        Image l = GameObject.Find("languageOp").GetComponent<Image>();
+        string actualLanguage = manager.getLanguage();
+
+        if (actualLanguage.Equals("English")) // cambiar a es
+        {
+            manager.setLanguage("Spanish");
+            manager.loadSprite(l, "UI/Images", "español");
+        }
+        else //en
+        {
+            manager.setLanguage("English");
+            manager.loadSprite(l, "UI/Images", "english");
+        }
+
+    }
+
+    /// ///////////////////////// IN GAME TEXT ////////////////////////////////////////
+
+    public void nextText()
+    {
+
+        this.playing = manager.nextText();
+
+		if (manager.scene.Equals("Level5") && playing) {
+
+            changeScene("main_menu");
+        }
+        else
+        {
+
+            if (playing){
+
+                lockCursor();
+                FindObjectOfType<sceneManager>().initGame();
+                manager.setActiveJoysticks(false, "joysticks"); //si es ordenador se esconden, si es movil, se muestran
+
+            }
+
+        }
+        
+    }
+    public bool isPlaying()
+    {
+
+        return playing;
+    }
+
+    /////////////////////////////// GAME STATE /////////////////////////////////////////////////
+
+
+    public int loadGame(){
+		int aux = PlayerPrefs.GetInt ("LVL");
+		int lvl = (aux != null) ? aux : -1;
+		return lvl;
+	}
+
+	public void saveGame() {
+
+        int lvl = getActualLevel() + 1;
+		int lvlSaved = this.loadGame ();
+
+		if (lvl > lvlSaved)
+			PlayerPrefs.SetInt ("LVL", lvl);
+    }
+
+    public void resetGame()
+    {
+
+        PlayerPrefs.DeleteKey("LVL");
+        saveGame();
+
+    }
+    //////////////////////////// PAUSE MENU ////////////////////////////////////////
+
+    public void setPauseMenu()
+    {
+
+        unlockCursor();
+        FindObjectOfType<sceneManager>().setPauseMenu();
+        manager.setPauseMenu();
+
+    }
+
+    public void goToSettings()
+    {
+
+        manager.goToSettings();
+        setSettingsValues();
+
+    }
+
+    public void backToGame()
+    {
+
+        lockCursor();
+        manager.goToGame();
+        FindObjectOfType<sceneManager>().setPauseMenu();
+
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    /////////////////////////////////// CURSOR /////////////////////////////////////////////////
+
+    public void lockCursor()
+    {
+        if (!mobile)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
+    public void unlockCursor()
+    {
+        if (!mobile)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        playing = GameObject.FindGameObjectWithTag("Player") != null;
+        if (playing && Input.GetKeyDown(KeyCode.P))
+        {
+            setPauseMenu();
+        }
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////
+
+}

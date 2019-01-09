@@ -7,6 +7,9 @@ public class finalDoor : MonoBehaviour {
 	private Animator anim;
 	private AudioSource sfx;
 
+	public AudioClip open;
+	public AudioClip close;
+
 	// Use this for initialization
 	void Start () {
 		anim = this.GetComponent<Animator> ();
@@ -23,7 +26,7 @@ public class finalDoor : MonoBehaviour {
 
 		if (other.tag.Equals("Player") && anim.GetBool("doorUp"))
 		{
-			sfx.clip = Resources.Load<AudioClip> ("Music/SFX/door_close");
+			sfx.clip = close;
 			sfx.Play ();
 			anim.SetBool ("doorUp", false);
             FindObjectOfType<GameManager>().PlayAmbulance();
@@ -34,7 +37,7 @@ public class finalDoor : MonoBehaviour {
 
     
 	public void openDoor(){
-		sfx.clip = Resources.Load<AudioClip> ("Music/SFX/door_open");
+		sfx.clip = open;
 		sfx.Play ();
 		anim.SetBool ("doorUp", true);
 	}
